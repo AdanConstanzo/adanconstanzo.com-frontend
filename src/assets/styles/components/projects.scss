@@ -1,0 +1,38 @@
+/*================ Projects ================*/
+.projects__wrapper {
+  display: grid;
+  margin: 0 auto;
+  width: 90vw;
+  grid-template-columns: auto auto;
+  grid-row-gap: 3rem;
+  padding-bottom: 3rem;
+  @media screen and (min-width: $bpDesktop) {
+    width: 70vw;
+    grid-template-columns: auto auto auto auto;
+  }
+  @media screen and (min-width: $bpDesktopHD) {
+    grid-row-gap: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+.projects__wrapper > div > img {
+  display: block;
+  border-radius: 2.5rem;
+  width: 12rem;
+  margin: 0 auto;
+  cursor: pointer;
+  -webkit-transition: 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
+  @media screen and (min-width: 350px) {
+    width: 15rem;
+  }
+  @media screen and (min-width: $bpDesktopHD) {
+    width: 20rem;
+  }
+}
+
+.projects__wrapper > div > img:hover {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+  box-shadow: 0 0 3rem 0.1rem #11abb0;
+}

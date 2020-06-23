@@ -1,0 +1,45 @@
+// Hidden divs for animations.
+.hidden,
+.about-me-hidden,
+.about-me-hidden-div,
+.projects-hidden,
+.projects-hidden-div,
+.blogs-hidden,
+.blogs-hidden-div,
+.contact-hidden,
+.contact-hidden-div {
+  opacity: 0;
+}
+
+.projects__h2,
+.footer__h2,
+.blogs__h2 {
+  line-height: 1;
+  font-size: 2.5rem;
+  text-align: center;
+  padding-bottom: 3rem;
+  @media screen and (min-width: $bpDesktop) {
+    font-size: 4rem;
+    padding-bottom: 5rem;
+  }
+  @media screen and (min-width: $bpDesktopHD) {
+    font-size: 3.5rem;
+    padding-bottom: 10rem;
+  }
+}
+
+section,
+footer {
+  padding: 3rem 0;
+  @media screen and (min-width: $bpDesktop) {
+    padding: 5rem 0;
+  }
+  @media screen and (min-width: $bpDesktopHD) {
+    padding: 10rem 0;
+  }
+}
+
+
+.no-scroll {
+  overflow: hidden !important;
+}

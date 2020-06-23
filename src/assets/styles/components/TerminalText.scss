@@ -1,0 +1,62 @@
+/* Terminal Text  */
+
+/*================ Animations ================*/
+
+@keyframes typing {
+  from {  width: 0% }
+	to { width: 100% }
+}
+
+@keyframes delete {
+  from {
+    width: 100%
+  }
+  to {
+    width: 0%;
+  }
+}
+
+@keyframes blink {
+	from, to { 
+		border-color: transparent 
+	}
+	50% { 
+		border-color: #11ABB0; 
+	}
+}
+
+/*================ TerminalText CSS ================*/
+
+.terminal-text{
+  font-family: Courier, monospace;
+  display: inline-block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  margin: 0 auto;
+	padding: 2rem;
+	@media screen and (min-width: $bpTablet) {
+		width: 400px;
+	}
+}
+
+.terminal-text__typing {
+  display: inline-block;
+}
+
+.terminal-text__typing > span {
+  display: inline-block;
+  overflow: hidden;
+  letter-spacing: 1.5px;
+  animation: blink .75s step-end infinite;
+  white-space: nowrap;
+	border-right: 4px solid #11ABB0;
+	color: #11ABB0;
+  box-sizing: border-box;
+  width: 0%;
+  float: left;
+}
+
+
