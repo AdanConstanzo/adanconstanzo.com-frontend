@@ -13,7 +13,7 @@ const Header = () => {
 				<h2 className="header-info__h2">Full-Stack Web Developer</h2>
 			</div>
 			<div id="arrow" className="arrow-down">
-				<img src={SubtractImage} alt="Arrow down image button." height="50px" width="50px" />
+				<img src={SubtractImage} alt="Arrow down button." height="50px" width="50px" />
 			</div>
 		</header>
 	);

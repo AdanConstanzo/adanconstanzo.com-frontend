@@ -28,7 +28,7 @@ class TerminalText {
 			const _typeSpeed = this.options.typingSpeed / _TerminalTextLength;
 			const animation = setInterval( () => {
 				this.textDOM.style.width = 100 / _TerminalTextLength * this.counter + '%';
-				const num = (100 / _TerminalTextLength) * this.counter
+				// const num = (100 / _TerminalTextLength) * this.counter
 				// this.textDOM.style.width = '100%';
 				this.counter += 1;
 				if (this.counter > _TerminalTextLength) {

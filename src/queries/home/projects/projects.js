@@ -13,6 +13,8 @@ const PROJECTS_QUERY = gql`
 			modalDescription
 			modalTech
 			modalId
+			liveSite
+      blogPost
 		}
 	}
 `;

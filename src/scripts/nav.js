@@ -59,7 +59,7 @@ const init = () => {
 	}
 
 	const toggleMobileMenu = () => {
-		var isTrueSet = (hamburger.getAttribute('data-open') == 'true');
+		var isTrueSet = (hamburger.getAttribute('data-open') === 'true');
 		if (isTrueSet) {
 
 		} else {
