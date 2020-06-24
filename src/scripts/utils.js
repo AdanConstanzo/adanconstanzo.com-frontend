@@ -11,6 +11,7 @@ const IsInViewportBottom = (domElement) => {
 }
 
 export const IsInViewport = (domElement) => {
+	if (domElement == null) return false;
 	const bounding = domElement.getBoundingClientRect();
 	return (
 		bounding.top >= 0 &&
@@ -78,9 +79,9 @@ export const checkProjectScroll = (selfObj) =>
 							setTimeout((num, animationVal) => {
 								// removing opacity.
 								element.children[num].classList.remove(selfObj.blocksClass + '-div');
-								// if (animation.terminalTextInit) {
-								// 	selfObj.cb();
-								// }
+								if (animation.terminalTextInit) {
+									selfObj.cb();
+								}
 								// adding animation.
 								element.children[num].classList.add(animationVal.animation);
 							}, 500 + animation.delayBetween * j, j, animation); // increments time delay by 500ms
