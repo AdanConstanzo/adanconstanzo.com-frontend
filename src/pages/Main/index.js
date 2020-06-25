@@ -1,5 +1,10 @@
 // Libraries
-import React from "react";
+import React, { useEffect } from "react";
+// Scripts
+import TerminalText from '../../scripts/TerminalText';
+import SetModal from '../../scripts/modal';
+import SetBlogs from '../../scripts/blogs';
+import SetNav from '../../scripts/nav';
 // Components
 import Header from '../../components/Header/';
 import AboutMe from '../../components/Section/AboutMe';
@@ -8,49 +13,65 @@ import Blogs from "../../components/Section/Blogs";
 import Query from "../../components/Query";
 import Footer from '../../components/Footer';
 // Queries
-import PROJECT_QUERY from '../../queries/home/projects/projects';
-import ABOUT_ME_QUERY from '../../queries/home/aboutMe/aboutMe';
-import HEADER_QUERY from '../../queries/home/header/header';
-import BLOGS_QUERY from '../../queries/home/blogs/blogs';
-import FOOTER_QUERY from '../../queries/home/footer/footer';
-
-class Home extends React.Component {
-  componentDidMount() {
-    // html document references.
-    // Running init.
-    // Our sections.
-    // SetBlogs();
-    // const blogsScrollEvent = { sectionId: 'blogs', blocksClass: 'blogs-hidden' }
-    // blogsScrollEvent.func = checkProjectScroll(blogsScrollEvent);
-    // checkProjectScroll(blogsScrollEvent)();
-    // window.addEventListener('scroll', blogsScrollEvent.func);
-    // Setting our objects a function or call back.
-    // Initial check.
-    // Setting the each function to our scroll event. 
-    // Setting our click listeners.
-  }
-
-  render(){
-    return(
-      <React.Fragment>
-        <Query query={HEADER_QUERY}>
-          {({ data: { homeHeader } }) => <Header homeHeader={homeHeader} />}
-        </Query>
-        <Query query={ABOUT_ME_QUERY}>
-          {({ data: { homeAboutMe } }) => <AboutMe homeAboutMe={homeAboutMe} /> }
-				</Query>
-        <Query query={PROJECT_QUERY}>
-          {({ data: { projects } }) => <Projects projects={projects} /> }
-				</Query>
-        <Query query={BLOGS_QUERY}>
-          {({ data: { blogs } }) => <Blogs blogs={blogs} /> }
-        </Query>
-        <Query query={FOOTER_QUERY}>
-          {({ data: { footers } }) => <Footer footers={footers} /> }
-        </Query>
-      </React.Fragment>
-    );
-  }
+import HOME_QUERY from '../../queries/home';
+//Utilities
+import { smoothScroll, checkProjectScroll } from '../../scripts/utils';
+// Component
+const Home = () => (
+  <React.Fragment>
+    <Query query={HOME_QUERY}>
+    {({ data: { homeHeader, homeAboutMe, projects, blogs, footers } }) => 
+      <HomeContainer>
+        <Header homeHeader={homeHeader} />
+        <AboutMe homeAboutMe={homeAboutMe} /> 
+        <Projects projects={projects} />
+        <Blogs blogs={blogs} /> 
+        <Footer footers={footers} />
+      </HomeContainer>
+    }
+    </Query>
+  </React.Fragment>
+);
+// Wrapper
+const HomeContainer = (props) => {
+  // constant variables being used.
+	const texts = ["Web Apps", "Game Dev", "App Dev", "Automation", "Servers", "ReactJS", "NodeJS", "AI/ML/DL", "Tensor Flow", "Javascript", "CSS"];
+  // When component mounts.
+  useEffect(() => {
+    // DOM Objects
+    const scrollButton = document.getElementById('arrow');
+    const terminalText = document.getElementById("terminal-text").children[0];
+    // Creating objects for animations / scroll .
+    const aboutMeEvent = { sectionId: 'about-me', blocksClass: 'about-me-hidden' }
+    const projectScrollEvent = { sectionId: 'projects', blocksClass: 'projects-hidden' }
+    const blogsScrollEvent = { sectionId: 'blogs', blocksClass: 'blogs-hidden' }
+    // New instance of Terminal Text. 
+    const textText1 = new TerminalText(texts, terminalText);
+    // Setting our functions for scroll positions
+    aboutMeEvent.func = checkProjectScroll(aboutMeEvent);
+		aboutMeEvent.cb = textText1.typeAnimation;
+		projectScrollEvent.func = checkProjectScroll(projectScrollEvent);
+    blogsScrollEvent.func = checkProjectScroll(blogsScrollEvent);
+    // Setting our click event listeners.
+    scrollButton.addEventListener('click', smoothScroll(document.getElementById('about-me')));
+    // Setting our scroll event listeners.
+    window.addEventListener('scroll', aboutMeEvent.func);
+		window.addEventListener('scroll', projectScrollEvent.func);
+    window.addEventListener('scroll', blogsScrollEvent.func);
+    // Calling our initializers. 
+    SetModal();
+    SetBlogs();
+    SetNav();
+    // Checking to see if page is currently on certain section. 
+		checkProjectScroll(aboutMeEvent)();
+		checkProjectScroll(projectScrollEvent)();
+    checkProjectScroll(blogsScrollEvent)();
+  });
+  return (
+    <div>
+      {props.children}
+    </div>
+  )
 }
 
 export default Home;

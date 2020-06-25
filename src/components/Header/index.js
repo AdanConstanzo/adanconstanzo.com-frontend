@@ -1,9 +1,7 @@
 // Libraries 
-import React, { useEffect } from 'react';
+import React from 'react';
 // Components
 import MainNav from '../Nav/MainNav';
-//Utilities
-import { smoothScroll } from '../../scripts/utils';
 // Assets
 import SubtractImage from '../../assets/images/Subtract.svg';
 // Component
@@ -11,10 +9,6 @@ const Header = ({ homeHeader }) => {
 	const coverImage = process.env.NODE_ENV !== "development"
 		? homeHeader.coverImage.url
 		: process.env.REACT_APP_BACKEND_URL + homeHeader.coverImage.url;
-	useEffect(() => {
-		const scrollButton = document.getElementById('arrow');
-    scrollButton.addEventListener('click', smoothScroll(document.getElementById('about-me')));
-	});
 	return (
 		<header id="home" style={{ backgroundImage: `url(${coverImage})` }}>
 			<MainNav />

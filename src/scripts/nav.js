@@ -1,6 +1,6 @@
 import { IsInViewport, smoothScroll } from './utils';
 
-const init = (id) => {
+const init = () => {
 	const navbar = document.getElementById('nav');
 	const navBarBlock = document.getElementById('mobile-nav-block');
 	const header = document.getElementById('home');
@@ -68,17 +68,17 @@ const init = (id) => {
 			navBarBlock.classList.add('nav-block');
 		}
 	}
-	if (window.setNavEventListeners === undefined && aboutMe && projects && blogs) {
-		window.addEventListener('scroll', changeNavSection(checkPoints));
-		window.addEventListener('scroll', AddStickyNav(navbar, headerHeight));
-		hamburger.addEventListener('click', toggleMobileMenu);
-		navBarBlock.addEventListener('click', hideMobileNav);
-		window.setNavEventListeners = true;
+	window.addEventListener('scroll', changeNavSection(checkPoints));
+	window.addEventListener('scroll', AddStickyNav(navbar, headerHeight));
+	hamburger.addEventListener('click', toggleMobileMenu);
+	navBarBlock.addEventListener('click', hideMobileNav);
+
+	for (let i = 0; i < navbar.children[0].children.length; i++) {
+		const li = navbar.children[0].children[i];
+		const attribute = li.getAttribute('data-ref');
+		li.addEventListener('click', smoothScroll(document.getElementById(attribute)));
+		li.addEventListener('click', hideMobileNav);
 	}
-	// about-me , projects, blogs, contract
-	const li = document.getElementById(`${id}-li`);
-	li.addEventListener('click', smoothScroll(document.getElementById(id)));
-	li.addEventListener('click', hideMobileNav);
 }
 
 export default init;
