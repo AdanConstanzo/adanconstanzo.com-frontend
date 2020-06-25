@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react';
 // Scripts
 import TerminalText from '../../scripts/TerminalText';
+import SetNav from '../../scripts/nav';
 // Utility
 import { checkProjectScroll } from '../../scripts/utils';
 // Component
@@ -23,6 +24,7 @@ const AboutMe = ({ homeAboutMe }) => {
 		aboutMeEvent.cb = textText1.typeAnimation;
 		checkProjectScroll(aboutMeEvent)();
 		window.addEventListener('scroll', aboutMeEvent.func);
+		SetNav('about-me');
 	});
 	
 	return (

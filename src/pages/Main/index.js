@@ -6,28 +6,27 @@ import AboutMe from '../../components/Section/AboutMe';
 import Projects from "../../components/Section/Projects";
 import Blogs from "../../components/Section/Blogs";
 import Query from "../../components/Query";
+import Footer from '../../components/Footer';
 // Queries
 import PROJECT_QUERY from '../../queries/home/projects/projects';
 import ABOUT_ME_QUERY from '../../queries/home/aboutMe/aboutMe';
 import HEADER_QUERY from '../../queries/home/header/header';
-// Scripts
-import SetBlogs from '../../scripts/blogs';
-// Utilities
-import { checkProjectScroll } from '../../scripts/utils';
+import BLOGS_QUERY from '../../queries/home/blogs/blogs';
+import FOOTER_QUERY from '../../queries/home/footer/footer';
 
 class Home extends React.Component {
   componentDidMount() {
     // html document references.
     // Running init.
-    SetBlogs();
     // Our sections.
-    const blogsScrollEvent = { sectionId: 'blogs', blocksClass: 'blogs-hidden' }
+    // SetBlogs();
+    // const blogsScrollEvent = { sectionId: 'blogs', blocksClass: 'blogs-hidden' }
+    // blogsScrollEvent.func = checkProjectScroll(blogsScrollEvent);
+    // checkProjectScroll(blogsScrollEvent)();
+    // window.addEventListener('scroll', blogsScrollEvent.func);
     // Setting our objects a function or call back.
-    blogsScrollEvent.func = checkProjectScroll(blogsScrollEvent);
     // Initial check.
-    checkProjectScroll(blogsScrollEvent)();
     // Setting the each function to our scroll event. 
-    window.addEventListener('scroll', blogsScrollEvent.func);
     // Setting our click listeners.
   }
 
@@ -37,15 +36,18 @@ class Home extends React.Component {
         <Query query={HEADER_QUERY}>
           {({ data: { homeHeader } }) => <Header homeHeader={homeHeader} />}
         </Query>
-        
         <Query query={ABOUT_ME_QUERY}>
           {({ data: { homeAboutMe } }) => <AboutMe homeAboutMe={homeAboutMe} /> }
 				</Query>
-        
         <Query query={PROJECT_QUERY}>
           {({ data: { projects } }) => <Projects projects={projects} /> }
 				</Query>
-        <Blogs />
+        <Query query={BLOGS_QUERY}>
+          {({ data: { blogs } }) => <Blogs blogs={blogs} /> }
+        </Query>
+        <Query query={FOOTER_QUERY}>
+          {({ data: { footers } }) => <Footer footers={footers} /> }
+        </Query>
       </React.Fragment>
     );
   }

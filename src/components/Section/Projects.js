@@ -7,6 +7,7 @@ import ProjectModal from '../ProjectModal';
 import { checkProjectScroll } from '../../scripts/utils';
 // Scripts
 import SetModal from '../../scripts/modal';
+import SetNav from '../../scripts/nav';
 // Component
 /*
 <Query query={ARTICLES_QUERY}>
@@ -23,6 +24,7 @@ const Projects = ({ projects }) => {
 		checkProjectScroll(projectScrollEvent)();
 		window.addEventListener('scroll', projectScrollEvent.func);
 		SetModal();
+		SetNav('projects');
   });
 
 	return(

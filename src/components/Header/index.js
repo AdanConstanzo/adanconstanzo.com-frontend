@@ -1,7 +1,5 @@
 // Libraries 
 import React, { useEffect } from 'react';
-// Scripts
-import SetNav from '../../scripts/nav';
 // Components
 import MainNav from '../Nav/MainNav';
 //Utilities
@@ -15,7 +13,6 @@ const Header = ({ homeHeader }) => {
 		: process.env.REACT_APP_BACKEND_URL + homeHeader.coverImage.url;
 	useEffect(() => {
 		const scrollButton = document.getElementById('arrow');
-    SetNav();
     scrollButton.addEventListener('click', smoothScroll(document.getElementById('about-me')));
 	});
 	return (
