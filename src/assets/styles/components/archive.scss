@@ -2,9 +2,16 @@
 
 .archive {
   @include minHeight();
+  padding-bottom: 3rem;
+  @media screen and (min-width: $bpDesktop) {
+    padding-bottom: 5rem;
+  }
+  @media screen and (min-width: $bpDesktopHD) {
+    padding-bottom: 10rem;
+  }
   .header {
     padding-top: 3rem;
-    margin-bottom: 50px;
+    margin-bottom: 5rem;
     @media screen and (min-width: $bpDesktop) {
       padding-top: 5rem;
     }

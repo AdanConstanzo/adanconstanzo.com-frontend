@@ -13,8 +13,8 @@ const Blogs = () => {
     document.body.classList.add('bg-color-primary');
 	})
   return (
-		<div class="archive" >
-			<div class="header" >
+		<div className="archive" >
+			<div className="header" >
 				<h1>Here are MORE of my blogs :)</h1>
 			</div>
 			<div className="grid">
