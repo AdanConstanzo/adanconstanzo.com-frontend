@@ -1,0 +1,29 @@
+.loadingScreen {
+	flex-direction: column;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $primaryColor;
+	width: 100vw;
+	height: 100vh;
+	p {
+		font-size: 3rem;
+		color: #fff;
+		text-align: center;
+		padding-top: 3rem;
+	}
+	button {
+		height: 40px;
+		width: 40px;
+		background: rgba(0, 0, 0, 0.2);
+		border-radius: 50%;
+		border: 2px solid rgba(0, 0, 0, 0.4);
+		border-top-color: #fff;
+		animation: spinner2 600ms linear infinite;
+		}
+		@keyframes spinner2 {
+		to {
+		transform: rotate(360deg);
+		}
+		}
+}
