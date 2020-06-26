@@ -1,21 +1,19 @@
+// Libraries
 import React from "react";
-
 import { Switch, Route } from "react-router-dom";
-
-import Articles from "./pages/Articles";
-import Article from "./pages/Article";
-import Category from "./pages/Category";
+// Components
+import Blog from "./pages/Blog";
 import Main from './pages/Main';
-
+import Blogs from './pages/Blogs';
+// Component
 function Routes() {
   return (
     <div className="App">
       {/* <Header /> */}
       <Switch>
         <Route path="/" component={Main} exact />
-        <Route path="/articles" component={Articles} exact />
-        <Route path="/article/:id" component={Article} exact />
-        <Route path="/category/:id" component={Category} exact />
+        <Route path="/blog/:id" component={Blog} exact />
+        <Route path="/blogs" component={Blogs} exact />
       </Switch>
     </div>
   );

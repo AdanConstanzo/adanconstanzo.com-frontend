@@ -2,8 +2,10 @@ import gql from "graphql-tag";
 
 const PROJECTS_QUERY = gql`
 	query Home {
-		blogs {
+		blogs (limit: 3) {
 			title
+			id
+			subTitle
 			description
 			coverImage{
 				url

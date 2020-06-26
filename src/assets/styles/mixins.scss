@@ -8,3 +8,29 @@
   opacity: 0.8;
   z-index: 5;
 }
+
+@mixin minHeight() {
+	min-height: calc( 100vh - 385px );
+  @media screen and (min-width: $bpTablet) {
+    min-height: calc( 100vh - 243px );
+  }
+  @media screen and (min-width: $bpDesktop) {
+    min-height: calc( 100vh - 318px );
+  }
+  @media screen and (min-width: $bpDesktopHD) {
+    min-height: calc( 100vh - 463px );
+  }
+}
+
+@mixin blogAnchors() {
+  a {
+    text-decoration: none;
+    color: $primarySecond;
+  }
+  a:visited {
+    color: $primarySecond;
+  }
+  a:hover {
+    color: #fff;
+  }
+}
