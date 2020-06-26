@@ -19,7 +19,7 @@ const Blogs = () => {
 			</div>
 			<div className="grid">
 				<Query query={BLOGS_QUERY}>
-					{({ data: { blogs } }) => <BlogsWrapper blogs={blogs} />}
+					{({ data: { blogs } }) => <BlogsWrapper key={blogs.id} blogs={blogs} />}
 				</Query>
 			</div>
 		</div>

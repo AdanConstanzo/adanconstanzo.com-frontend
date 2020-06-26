@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import Blog from "./pages/Blog";
 import Main from './pages/Main';
 import Blogs from './pages/Blogs';
+import Books from './pages/Books';
 // Component
 function Routes() {
   return (
@@ -14,6 +15,7 @@ function Routes() {
         <Route path="/" component={Main} exact />
         <Route path="/blog/:id" component={Blog} exact />
         <Route path="/blogs" component={Blogs} exact />
+        <Route path="/books" component={Books} exact />
       </Switch>
     </div>
   );
