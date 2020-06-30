@@ -9,7 +9,7 @@ import BOOK_QUERY from "../../queries/book/book";
 // Component
 const Book = () => {
   let { id } = useParams();
-  const transformImageUri = (input) => process.env.NODE_ENV !== "development" ? input : process.env.REACT_APP_BACKEND_URL + input
+  const transformImageUri = (input) => process.env.NODE_ENV !== "development" ? `https://api.adanconstanzo.com/${input}` : process.env.REACT_APP_BACKEND_URL + input
   useEffect(() => {
     // Setting extra space to background.
     document.body.classList.add('bg-color-primary');
@@ -18,7 +18,7 @@ const Book = () => {
     <Query query={BOOK_QUERY} id={id}>
       {({ data: { book } }) => {
         const HeaderUrl = process.env.NODE_ENV !== "development"
-        ? book.header.url
+        ? `https://api.adanconstanzo.com/${book.header.url}`
         : process.env.REACT_APP_BACKEND_URL + book.header.url;
         const style = {
           background: `url(${HeaderUrl}) no-repeat center`,

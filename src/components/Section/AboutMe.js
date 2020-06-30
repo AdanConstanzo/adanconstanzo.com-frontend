@@ -3,7 +3,7 @@ import React from 'react';
 // Component
 const AboutMe = ({ homeAboutMe }) => {
 	const imageOfMe = process.env.NODE_ENV !== "development"
-		? homeAboutMe.imageOfMe.url
+		? `https://api.adanconstanzo.com/${homeAboutMe.imageOfMe.url}`
 		: process.env.REACT_APP_BACKEND_URL + homeAboutMe.imageOfMe.url;	
 	return (
 		<section id="about-me" className="about-me__section bg-color-primary">

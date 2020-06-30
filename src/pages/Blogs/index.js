@@ -34,7 +34,7 @@ const BlogsWrapper = ({ blogs }) => (
 
 const Blog = ({ blog }) => {
 	const CoverImageUrl = process.env.NODE_ENV !== "development"
-	? blog.coverImage.url
+	? `https://api.adanconstanzo.com/${blog.coverImage.url}`
 	: process.env.REACT_APP_BACKEND_URL + blog.coverImage.url;
 	return(
 		<figure className="effect-sadie">

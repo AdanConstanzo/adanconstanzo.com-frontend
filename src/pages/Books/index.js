@@ -36,7 +36,7 @@ const Book = ({ book }) => {
 		"read": "book--shadow__read"
 	}
 	const BookImageUrl = process.env.NODE_ENV !== "development"
-	? book.coverImage.url
+	? `https://api.adanconstanzo.com/${book.coverImage.url}`
 	: process.env.REACT_APP_BACKEND_URL + book.coverImage.url;
 	return (
 		<div>

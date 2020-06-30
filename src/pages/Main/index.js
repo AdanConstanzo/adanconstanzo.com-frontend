@@ -11,7 +11,7 @@ import AboutMe from '../../components/Section/AboutMe';
 import Projects from "../../components/Section/Projects";
 import Blogs from "../../components/Section/Blogs";
 import Query from "../../components/Query";
-import Footer from '../../components/Footer';
+import { HomeFooter } from '../../components/Footer';
 // Queries
 import HOME_QUERY from '../../queries/home';
 //Utilities
@@ -26,7 +26,7 @@ const Home = () => (
         <AboutMe homeAboutMe={homeAboutMe} /> 
         <Projects projects={projects} />
         <Blogs blogs={blogs} /> 
-        <Footer footers={footers} />
+        <HomeFooter footers={footers} />
       </HomeContainer>
     }
     </Query>

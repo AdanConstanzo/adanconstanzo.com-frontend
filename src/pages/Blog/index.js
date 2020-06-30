@@ -4,28 +4,32 @@ import { useParams } from "react-router";
 // Components
 import Query from "../../components/Query";
 import ReactMarkdown from "react-markdown";
+import { BlogFooter } from '../../components/Footer/index';
 // Queries
 import BLOG_QUERY from "../../queries/blog/blog";
 // Component
 const Blog = () => {
   let { id } = useParams();
-  const transformImageUri = (input) => process.env.NODE_ENV !== "development" ? input : process.env.REACT_APP_BACKEND_URL + input
+  const transformImageUri = (input) => process.env.NODE_ENV !== "development" ? `https://api.adanconstanzo.com/${input}` : process.env.REACT_APP_BACKEND_URL + input
   useEffect(() => {
     // Setting extra space to background.
     document.body.classList.add('bg-color-primary');
   });
   return (
     <Query query={BLOG_QUERY} id={id}>
-      {({ data: { blog } }) => {
+      {({ data: { blog, footers } }) => {
         const HeaderUrl = process.env.NODE_ENV !== "development"
-        ? blog.header.url
+        ? `https://api.adanconstanzo.com/${blog.header.url}`
         : process.env.REACT_APP_BACKEND_URL + blog.header.url;
         const style = {
           background: `url(${HeaderUrl}) no-repeat center`,
           backgroundSize: 'cover'
         }
         return (
-          <BlogWrapper blog={blog} style={style} transformImageUri={transformImageUri} />
+          <React.Fragment>
+            <BlogWrapper blog={blog} style={style} transformImageUri={transformImageUri} />
+            <BlogFooter footers={footers} />
+          </React.Fragment>
         );
       }}
     </Query>

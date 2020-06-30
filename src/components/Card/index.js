@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = ({ article }) => {
   const imageUrl =
     process.env.NODE_ENV !== "development"
-      ? article.image.url
+      ? `https://api.adanconstanzo.com/${article.image.url}`
       : process.env.REACT_APP_BACKEND_URL + article.image.url;
   return (
     <Link to={`/article/${article.id}`} className="uk-link-reset">

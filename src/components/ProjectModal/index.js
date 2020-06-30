@@ -5,7 +5,7 @@ import CodingIcon from '../../assets/images/coding-icon.svg';
 //Component
 const ProjectModal = ({ project }) => {
 	const modalImage = process.env.NODE_ENV !== "development"
-		? project.modalImage.url
+		? `https://api.adanconstanzo.com/${project.modalImage.url}`
 		: process.env.REACT_APP_BACKEND_URL + project.modalImage.url;
 	return (
 		<div id={project.modalId} className="modal">

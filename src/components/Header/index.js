@@ -7,7 +7,7 @@ import SubtractImage from '../../assets/images/Subtract.svg';
 // Component
 const Header = ({ homeHeader }) => {
 	const coverImage = process.env.NODE_ENV !== "development"
-		? homeHeader.coverImage.url
+		? `https://api.adanconstanzo.com/${homeHeader.coverImage.url}`
 		: process.env.REACT_APP_BACKEND_URL + homeHeader.coverImage.url;
 	return (
 		<header id="home" style={{ backgroundImage: `url(${coverImage})` }}>
