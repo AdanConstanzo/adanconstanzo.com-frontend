@@ -11,7 +11,7 @@ jobs:
         steps:
             - add_ssh_keys:
                 fingerprints:
-                    - "d8:4c:df:86:65:f1:b5:23:73:b9:62:d4:57:1f:89:c1"
+                    - "d7:4a:bc:e5:af:70:e2:94:e2:c2:6f:9d:f7:81:bc:12"
             - deploy:
                 name: ssh to laptop
                 command: ssh -o "StrictHostKeyChecking no" adan@45.50.226.163 "cd ~/adanconsstanzo.com/frontend/; git checkout .; git pull;"
