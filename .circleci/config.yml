@@ -1,0 +1,26 @@
+version: 2
+jobs:
+    build:
+        docker:
+            - image: buildpack-deps:trusty # primary container will run Ubuntu Trusty
+        steps:
+            - checkout
+    build-live:
+        machine:
+            enabled: true
+        steps:
+            - deploy:
+                name: ssh to laptop
+                command: ssh -o "StrictHostKeyChecking no" adan@45.50.226.163 "cd ~/adanconsstanzo.com/frontend/; git checkout .; git pull;"
+
+workflows:
+    version: 2 
+    build-and-deploy:
+        jobs:
+            - build
+            - build-live:
+                requires:
+                    - build
+                filters:
+                    branches:
+                        only: master
