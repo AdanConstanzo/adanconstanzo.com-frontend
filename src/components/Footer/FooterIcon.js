@@ -3,7 +3,7 @@ import React from 'react';
 
 const FooterIcon = ( {footer} ) => {
 	const icon = process.env.NODE_ENV !== "development"
-		? `https://api.adanconstanzo.com/${footer.icon.url}`
+		? `https://api.adanconstanzo.com${footer.icon.url}`
 		: process.env.REACT_APP_BACKEND_URL + footer.icon.url;
 	return(
 		<div>

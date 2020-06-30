@@ -11,7 +11,7 @@ const PROJECTS_QUERY = gql`
 				url
 			}
 		}
-		footers {
+		footers (limit: 3) {
 			link
 			text
 			icon{

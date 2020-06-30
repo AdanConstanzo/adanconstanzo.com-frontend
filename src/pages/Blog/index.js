@@ -10,7 +10,7 @@ import BLOG_QUERY from "../../queries/blog/blog";
 // Component
 const Blog = () => {
   let { id } = useParams();
-  const transformImageUri = (input) => process.env.NODE_ENV !== "development" ? `https://api.adanconstanzo.com/${input}` : process.env.REACT_APP_BACKEND_URL + input
+  const transformImageUri = (input) => process.env.NODE_ENV !== "development" ? `https://api.adanconstanzo.com${input}` : process.env.REACT_APP_BACKEND_URL + input
   useEffect(() => {
     // Setting extra space to background.
     document.body.classList.add('bg-color-primary');
@@ -19,7 +19,7 @@ const Blog = () => {
     <Query query={BLOG_QUERY} id={id}>
       {({ data: { blog, footers } }) => {
         const HeaderUrl = process.env.NODE_ENV !== "development"
-        ? `https://api.adanconstanzo.com/${blog.header.url}`
+        ? `https://api.adanconstanzo.com${blog.header.url}`
         : process.env.REACT_APP_BACKEND_URL + blog.header.url;
         const style = {
           background: `url(${HeaderUrl}) no-repeat center`,
