@@ -14,7 +14,7 @@ jobs:
                     - "d7:4a:bc:e5:af:70:e2:94:e2:c2:6f:9d:f7:81:bc:12"
             - deploy:
                 name: ssh to laptop
-                command: ssh -o "StrictHostKeyChecking no" adan@45.50.226.163 "cd ~/adanconsstanzo.com/frontend/; git checkout .; git pull;"
+                command: ssh -o "StrictHostKeyChecking no" adan@45.50.226.163 "cd ~/adanconsstanzo.com/frontend/; git checkout .; git pull; npm run build;"
 
 workflows:
     version: 2 
