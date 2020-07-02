@@ -26,6 +26,7 @@ const PROJECTS_QUERY = gql`
 			}
 		}
 		homeAboutMe {
+			technologies,
 			header
 			description
 			subHeader

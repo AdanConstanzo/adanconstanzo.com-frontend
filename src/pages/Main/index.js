@@ -21,7 +21,7 @@ const Home = () => (
   <React.Fragment>
     <Query query={HOME_QUERY}>
     {({ data: { homeHeader, homeAboutMe, projects, blogs, footers } }) => 
-      <HomeContainer>
+      <HomeContainer technologies={homeAboutMe.technologies} >
         <Header homeHeader={homeHeader} />
         <AboutMe homeAboutMe={homeAboutMe} /> 
         <Projects projects={projects} />
@@ -35,7 +35,7 @@ const Home = () => (
 // Wrapper
 const HomeContainer = (props) => {
   // constant variables being used.
-	const texts = ["Web Apps", "Game Dev", "App Dev", "Automation", "Servers", "ReactJS", "NodeJS", "AI/ML/DL", "Tensor Flow", "Javascript", "CSS"];
+	const texts = props.technologies.split(',');
   // When component mounts.
   useEffect(() => {
     // DOM Objects
