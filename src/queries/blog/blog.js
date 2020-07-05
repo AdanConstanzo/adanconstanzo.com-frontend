@@ -4,6 +4,7 @@ const BLOG_QUERY = gql`
 	query Blog ($id: ID!) {
 		blog (id: $id) {
 			title
+			subTitle
 			description
 			blog
 			coverImage {

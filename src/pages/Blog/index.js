@@ -41,7 +41,7 @@ const BlogWrapper = ({ blog, style, transformImageUri }) => (
     <div className="header" > 
       <div className="blur-image" style={style}></div>
       <div className="title">
-        <h1>{blog.title}</h1>
+        <h1>{blog.title}<br/>{blog.subTitle}</h1>
       </div>
     </div>
     <div className="single">
