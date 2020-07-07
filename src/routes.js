@@ -7,6 +7,7 @@ import Main from './pages/Main';
 import Blogs from './pages/Blogs';
 import Book from './pages/Book';
 import Books from './pages/Books';
+import HikingMap from './pages/HikingMap';
 // Component
 function Routes() {
   return (
@@ -18,6 +19,7 @@ function Routes() {
         <Route path="/blogs" component={Blogs} exact />
         <Route path="/book/:id" component={Book} exact />
         <Route path="/books" component={Books} exact />
+        <Route path="/hikes" component={HikingMap} exact />
       </Switch>
     </div>
   );

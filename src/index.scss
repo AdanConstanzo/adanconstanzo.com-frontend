@@ -19,4 +19,24 @@
 @import './assets/styles/components/modal.scss';
 @import './assets/styles/components/single.scss';
 @import './assets/styles/components/archive.scss';
-@import './assets/styles/components/loadingScreen.scss'
+@import './assets/styles/components/loadingScreen.scss';
+
+#mapid { 
+	height: 100vh; 
+}
+
+
+#popUp {
+	z-index: 1000;
+	position: absolute;
+	top: 10%;
+	background-color: orange;
+	width: 200px;
+	height: 200px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	right: 5%;
+}
