@@ -4,6 +4,7 @@ const MAP_EVENT_QUERY = gql`
 	query MapEvent {
 		mapEvents {
 			id
+			type
 			latitude
 			longitude
 			popUpImage {
@@ -14,8 +15,25 @@ const MAP_EVENT_QUERY = gql`
 			description
 		}
 		mapIcon {
-			hiking {
+			hike {
 				url
+				width
+				height
+			}
+			cruise {
+				url
+				width
+				height
+			}
+			food {
+				url
+				width
+				height
+			}
+			trip {
+				url
+				width
+				height
 			}
 		}
 	}
