@@ -11,4 +11,45 @@
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	transition: height ease-in 0.4s;
+	@media screen and (min-width: $bpTablet) {
+		width: 0%;
+		right: 0;
+		top: 0;
+		height: 100%;
+		transition: width ease-in 0.4s;
+  }
+}
+
+.animateHeight {
+	height: 40% !important;
+	@media screen and (min-width: $bpTablet) {
+		height: 100% !important;
+		width: 40% !important;
+	}
+	.my-caret::before {
+		content: "\f0da";
+	}
+}
+
+.arrow-click {
+	cursor: pointer;
+	position: absolute;
+	background-color: #eaeaea;
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+	border-left: 1px solid #D4D4D4;
+	width: 3.7rem;
+	height: 4.8rem;
+	top: 50%;
+	left: -3.7rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	i {
+		font-size: 3rem;
+	}
+}
+
+.my-caret:before {
+  content: "\f0d9";
 }

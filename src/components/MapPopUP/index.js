@@ -6,8 +6,10 @@ class MapPopUp extends React.Component {
 		super(props);
 		this.state = {
 			mapEventMap: {},
-			latlng: {}
+			latlng: {},
+			open: false
 		};
+		this.myRef = React.createRef();
 	}
 	componentDidMount() {
 		const { mapEvents, mapIcon } = this.props;
@@ -24,6 +26,8 @@ class MapPopUp extends React.Component {
 		// resetting state for latlong
 		mymap.on('click', (e) => {
 			this.setState({ latlng: {} });
+			this.myRef.current.classList.remove('animateHeight');
+			this.setState({ open: false });
 		})
     mapEvents.forEach(event => {
       const { latitude, longitude, name, description, city, id, type, state } = event;
@@ -37,6 +41,8 @@ class MapPopUp extends React.Component {
 				console.log(e.latlng);
 				this.setState({ latlng: e.latlng });
 				console.log(type);
+				this.myRef.current.classList.add('animateHeight');
+				this.setState({ open: true });
 			});
       const tempEvent = {...event};
       tempEvent.marker = marker;
@@ -94,13 +100,25 @@ class MapPopUp extends React.Component {
 		});
 	}
 
+	openSideNav = () => {
+		const { open } = this.state;
+		if (open)
+			this.myRef.current.classList.remove('animateHeight');
+		else
+			this.myRef.current.classList.add('animateHeight');
+		this.setState({ open: !open });
+	};
+
 	render() {
 		const { latlng } = this.state;
 		return (
-			<div id="mapNavBar" style={{ zIndex: 1000 }} >
+			<div id="mapNavBar" style={{ zIndex: 1000 }} ref={this.myRef} >
+				<div onClick={this.openSideNav} class="arrow-click" >
+					<i class="fa my-caret" aria-hidden="true"></i>
+				</div>
 				{/* <p onClick={this.hideType('hike')}>Hide Hike</p>
 				<p onClick={this.showType('hike')}>Show Hike</p> */}
-				{/* <p>{latlng.lat}</p> */}
+				<p>{latlng.lat}</p>
 				{(typeof latlng.lat === "number") && <p>Good morning</p>}
       	{/* {mapEvents.map((event, i) => <p key={i} onClick={goToAPlace(event.latitude, event.longitude)}>{event.name}</p>)} */}
 			</div>
