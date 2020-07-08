@@ -4,6 +4,7 @@ import Script from 'react-load-script'
 // Components
 import LoadingScreen from '../../components/LoadingScreen';
 import Query from '../../components/Query';
+import MapPopUp from '../../components/MapPopUP';
 // Queries 
 import MAP_EVENT_QUERY from "../../queries/mapEvent";
 // Component
@@ -41,16 +42,6 @@ class HikingMap extends React.Component {
   }
 }
 
-const makeMarkerPopUp = (imgUrl, hikeUrl, hikeName, hikeCity) => {
-  return  `<div class="popup">`+
-            `<a href='${hikeUrl}'/>` + 
-              `<img width='200' src='${imgUrl}' />` +
-            `</a>` + 
-            `<br/>` +
-            `<b>${hikeName}, ${hikeCity}</b>`+
-          `</div>`;
-}
-
 const Map = (props) => {
   const L = window.L;
   useEffect(() => {
@@ -74,65 +65,7 @@ const Map = (props) => {
   )
 }
 
-const MapPopUp = ({ mapEvents, mapIcon }) => {
-  const mapEventMap = {}
-  const goToAPlace = (lat,lon) => () => {
-    window.mymap.flyTo([lat, lon], 12)
-    mapEventMap[`${lat}-${lon}`].marker.openPopup();
-  }
-  useEffect(() => {
-    const L = window.L;
-    const mymap = window.mymap;
-    const icons = generateIcons(mapIcon);
-    mapEvents.forEach(event => {
-      const { latitude, longitude, name, description, city, id, type } = event;
-      const popImageUrl = process.env.NODE_ENV !== "development"
-      ? `https://api.adanconstanzo.com${event.popUpImage.url}`
-      : process.env.REACT_APP_BACKEND_URL + event.popUpImage.url;
-      const hikeUrl = `/hike/${id}`;
-      // Setting default icons to pointOfInterest else custom icon. 
-      const icon = (type === "pointOfInterest") ? null : { icon: icons[type] }
-      const marker = L.marker([latitude, longitude], icon).addTo(mymap);
-      marker.bindPopup(makeMarkerPopUp(popImageUrl, hikeUrl, name, city));
-      const tempEvent = {...event};
-      tempEvent.marker = marker;
-      mapEventMap[`${event.latitude}-${event.longitude}`] = tempEvent;
-    });
-  });
-  return (
-    <div id="popUp" style={{ zIndex: 1000 }} >
-      {mapEvents.map((event, i) => <p key={i} onClick={goToAPlace(event.latitude, event.longitude)}>{event.name}</p>)}
-    </div>
-  );
-}
 
-// Function to generate icons for map.
-const generateIcons = (mapIcons) => {
-  // Referencing Leafletjs map object.
-  const L = window.L;
-  // Filtering out __typename from objects. 
-  const iconsKeys = Object.keys(mapIcons).filter(ele => ele !== '__typename');
-  // Where we are storing our icons.
-  const icons = {}
-  // Looping through our icons 
-  iconsKeys.forEach(key => {
-    // collecting information about icon
-    const { width, height, url } = mapIcons[key];
-    // Getting our url.
-    const iconUrl = process.env.NODE_ENV !== "development"
-      ? `https://api.adanconstanzo.com${url}`
-      : process.env.REACT_APP_BACKEND_URL + url;
-    // Generating our Icons with Leafletjs
-    const icon = L.icon({
-      iconUrl,
-      iconSize: [width, height],
-      // this anchor works for all images so far. 
-      popupAnchor: [5, -25]
-    });
-    icons[key] = icon;
-  });
-  return icons;
-}
 
 
 export default HikingMap;

@@ -12,6 +12,7 @@ const MAP_EVENT_QUERY = gql`
 			}
 			name
 			city
+			state
 			description
 		}
 		mapIcon {
