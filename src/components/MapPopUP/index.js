@@ -1,5 +1,7 @@
 // Libraries
 import React from 'react';
+// Components
+import TypeToggle from './typeToggle';
 // Component
 class MapPopUp extends React.Component {
 	constructor(props) {
@@ -7,9 +9,12 @@ class MapPopUp extends React.Component {
 		this.state = {
 			mapEventMap: {},
 			latlng: {},
-			open: false
+			open: false,
+			icons : {},
+			openFilter: false
 		};
 		this.myRef = React.createRef();
+		this.filterRef = React.createRef();
 	}
 	componentDidMount() {
 		const { mapEvents, mapIcon } = this.props;
@@ -36,7 +41,7 @@ class MapPopUp extends React.Component {
       : process.env.REACT_APP_BACKEND_URL + event.popUpImage.url;
       const hikeUrl = `/hike/${id}`;
       // Setting default icons to pointOfInterest else custom icon. 
-      const icon = (type === "pointOfInterest") ? {attribution: 'true'} : { icon: icons[type], attribution: 'true' }
+      const icon = (type === "pointOfInterest") ? null : { icon: icons[type] }
       const marker = L.marker([latitude, longitude], icon).addTo(mymap).on('click', (e) => {
 				console.log(e.latlng);
 				this.setState({ latlng: e.latlng });
@@ -48,7 +53,8 @@ class MapPopUp extends React.Component {
       tempEvent.marker = marker;
       mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
-		this.setState({ mapEventMap });
+		this.setState({ mapEventMap, icons });
+		console.log(icons);
 	}
 
 	// Function to generate icons for map.
@@ -95,32 +101,46 @@ class MapPopUp extends React.Component {
 				lat: latitude, lng: longitude 
 			});
 			mapEventMap[type][ele].marker.addTo(mymap);
-			// marker.setLatLng(geo);
-      //   marker.addTo(mymap);
 		});
 	}
 
 	openSideNav = () => {
 		const { open } = this.state;
-		if (open)
+		if (open) {
 			this.myRef.current.classList.remove('animateHeight');
-		else
+		} else {
 			this.myRef.current.classList.add('animateHeight');
+		}
 		this.setState({ open: !open });
 	};
 
+	openFilter = () => {
+		const { openFilter } = this.state;
+		if (openFilter) {
+			this.filterRef.current.classList.remove('animateFilter');
+			this.filterRef.current.classList.add('icon-hide');
+		} else {
+			this.filterRef.current.classList.add('animateFilter');
+			setTimeout(() => {
+				this.filterRef.current.classList.remove('icon-hide');
+			}, 400);
+		}
+		this.setState({ openFilter: !openFilter })
+	}
+
 	render() {
-		const { latlng } = this.state;
+		const { latlng, icons } = this.state;
 		return (
 			<div id="mapNavBar" style={{ zIndex: 1000 }} ref={this.myRef} >
 				<div onClick={this.openSideNav} class="arrow-click" >
 					<i class="fa my-caret" aria-hidden="true"></i>
 				</div>
-				{/* <p onClick={this.hideType('hike')}>Hide Hike</p>
-				<p onClick={this.showType('hike')}>Show Hike</p> */}
+				<div class="icons icon-hide" ref={this.filterRef} >
+					{Object.keys(icons).map(type => <TypeToggle type={type} hideType={this.hideType(type)} showType={this.showType(type)}  src={icons[type].options.iconUrl} />)}
+					<i onClick={this.openFilter} class="fa fa-filter" aria-hidden="true"></i>
+				</div>
 				<p>{latlng.lat}</p>
 				{(typeof latlng.lat === "number") && <p>Good morning</p>}
-      	{/* {mapEvents.map((event, i) => <p key={i} onClick={goToAPlace(event.latitude, event.longitude)}>{event.name}</p>)} */}
 			</div>
 		)
 	}

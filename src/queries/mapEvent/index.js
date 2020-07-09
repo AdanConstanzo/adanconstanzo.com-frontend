@@ -36,6 +36,11 @@ const MAP_EVENT_QUERY = gql`
 				width
 				height
 			}
+			pointOfInterest {
+				url
+				width
+				height
+			}
 		}
 	}
 `;
