@@ -2,19 +2,23 @@
 import React from 'react';
 // Components
 import TypeToggle from './typeToggle';
+import EventView from './eventView';
 // Component
 class MapPopUp extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			mapEventMap: {},
+			currentEvent: {},
 			latlng: {},
 			open: false,
+			openFilter: false,
 			icons : {},
 			openFilter: false
 		};
 		this.myRef = React.createRef();
 		this.filterRef = React.createRef();
+		this.currentContent = React.createRef();
 	}
 	componentDidMount() {
 		const { mapEvents, mapIcon } = this.props;
@@ -32,7 +36,8 @@ class MapPopUp extends React.Component {
 		mymap.on('click', (e) => {
 			this.setState({ latlng: {} });
 			this.myRef.current.classList.remove('animateHeight');
-			this.setState({ open: false });
+			this.currentContent.current.classList.remove('setOpacityTo1');
+			this.setState({ open: false, currentEvent: {}, latlng: {}  });
 		})
     mapEvents.forEach(event => {
       const { latitude, longitude, name, description, city, id, type, state } = event;
@@ -43,11 +48,11 @@ class MapPopUp extends React.Component {
       // Setting default icons to pointOfInterest else custom icon. 
       const icon = (type === "pointOfInterest") ? null : { icon: icons[type] }
       const marker = L.marker([latitude, longitude], icon).addTo(mymap).on('click', (e) => {
-				console.log(e.latlng);
-				this.setState({ latlng: e.latlng });
-				console.log(type);
+				const { mapEventMap } = this.state;
+				const { lat, lng } = e.latlng;
 				this.myRef.current.classList.add('animateHeight');
-				this.setState({ open: true });
+				this.currentContent.current.classList.add('setOpacityTo1');
+				this.setState({ open: true, currentEvent: mapEventMap[type][`${lat}-${lng}`], latlng: e.latlng });
 			});
       const tempEvent = {...event};
       tempEvent.marker = marker;
@@ -108,10 +113,12 @@ class MapPopUp extends React.Component {
 		const { open } = this.state;
 		if (open) {
 			this.myRef.current.classList.remove('animateHeight');
+			this.currentContent.current.classList.remove('setOpacityTo1');
+			this.setState({ open: !open, currentEvent: {} })
 		} else {
 			this.myRef.current.classList.add('animateHeight');
+			this.setState({ open: !open })
 		}
-		this.setState({ open: !open });
 	};
 
 	openFilter = () => {
@@ -129,7 +136,7 @@ class MapPopUp extends React.Component {
 	}
 
 	render() {
-		const { latlng, icons } = this.state;
+		const { currentEvent, icons } = this.state;
 		return (
 			<div id="mapNavBar" style={{ zIndex: 1000 }} ref={this.myRef} >
 				<div onClick={this.openSideNav} class="arrow-click" >
@@ -139,8 +146,11 @@ class MapPopUp extends React.Component {
 					{Object.keys(icons).map(type => <TypeToggle type={type} hideType={this.hideType(type)} showType={this.showType(type)}  src={icons[type].options.iconUrl} />)}
 					<i onClick={this.openFilter} class="fa fa-filter" aria-hidden="true"></i>
 				</div>
-				<p>{latlng.lat}</p>
-				{(typeof latlng.lat === "number") && <p>Good morning</p>}
+				{/* <p>{latlng.lat}</p>
+				{(typeof latlng.lat === "number") && <p>Good morning</p>} */}
+				<div ref={this.currentContent} class="eventContent">
+					{Object.keys(currentEvent).length > 0 && <EventView event={currentEvent} />}	
+				</div>
 			</div>
 		)
 	}

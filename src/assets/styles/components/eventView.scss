@@ -1,0 +1,77 @@
+.eventContent {
+	opacity: 0;
+	transition: opacity 100ms ease-in 400ms;
+}
+.setOpacityTo1 {
+	opacity: 1 !important;
+}
+
+.eventView {
+	font-weight: 400;
+	font-family: sans-serif;
+	text-align: center;
+	img {
+		width: 100%;
+	}
+	.general-info, .user-info {
+		padding: 1rem;
+	}
+	.general-info {
+		border-bottom: 1px solid #d2d2d2;
+		.name {
+			font-size: 2.5rem;
+			padding-bottom: 0.5rem;
+		}
+		.location {
+			font-size: 1.5rem;
+		}
+		div > i {
+			padding: 0.5rem 0;
+			font-size: 1.5rem;
+		}
+	}
+	.user-info {
+		.description {
+			font-size: 1.7rem;
+			text-align: left;
+		}
+		a {
+			font-size: 1.5rem;
+			float: right;
+			text-decoration: none;
+			color: teal;
+		}
+		a:visited {
+			color: teal;
+		}
+	}
+	@media screen and (min-width: $bpTablet) {
+		.general-info, .user-info {
+			padding: 2rem;
+		}
+		.general-info {
+			border-bottom: 1px solid #d2d2d2;
+			.name {
+				font-size: 3.5rem;
+				padding-bottom: 1rem;
+			}
+			.location {
+				font-size: 1.8rem;
+			}
+			
+		}
+		.user-info {
+			.description {
+				font-size: 1.7rem;
+				text-align: left;
+			}
+		}
+	}
+}
+
+.fa-star:before {
+  content: "\f005";
+}
+.fa-star-o:before {
+  content: "\f006";
+}
