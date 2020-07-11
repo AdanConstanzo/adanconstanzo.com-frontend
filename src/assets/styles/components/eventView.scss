@@ -19,11 +19,23 @@
 	.general-info {
 		border-bottom: 1px solid #d2d2d2;
 		.name {
-			font-size: 2.5rem;
-			padding-bottom: 0.5rem;
+			font: bold 2.5rem "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+			color: #333;
+			line-height: 90%;
+			margin: .2em 0 .4em 0;
+			letter-spacing: -2px;
+			// font-size: 2.5rem;
+			// padding-bottom: 0.5rem;
 		}
 		.location {
-			font-size: 1.5rem;
+			// font-size: 1.5rem;
+			font-size: 1.8rem;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			color: #000;
+			font-size: 10px;
+			font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+			font-weight: 100; 
 		}
 		div > i {
 			padding: 0.5rem 0;
@@ -32,17 +44,29 @@
 	}
 	.user-info {
 		.description {
+			// font-size: 1.7rem;
+			// text-align: left;
+			color: #424242;
+			font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+			letter-spacing:0.1em;
+			text-align:center;
+			margin: 0.5rem auto;
+			line-height: 145%;
 			font-size: 1.7rem;
-			text-align: left;
+			font-variant: small-caps;
+			min-height: 9.6rem;
 		}
 		a {
 			font-size: 1.5rem;
 			float: right;
 			text-decoration: none;
-			color: teal;
+			color: #000;
+			i {
+				padding-left: 1rem;
+			}
 		}
 		a:visited {
-			color: teal;
+			color: #000;
 		}
 	}
 	@media screen and (min-width: $bpTablet) {
@@ -52,18 +76,42 @@
 		.general-info {
 			border-bottom: 1px solid #d2d2d2;
 			.name {
-				font-size: 3.5rem;
-				padding-bottom: 1rem;
+				// font-size: 3.5rem;
+				// padding-bottom: 1rem;
+				font: bold 34px "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+				color: #333;
+				line-height: 90%;
+				margin: .2em 0 .4em 0;
+				letter-spacing: -2px;
 			}
 			.location {
+				// font-size: 1.8rem;
 				font-size: 1.8rem;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: #000;
+				font-size: 10px;
+				font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+				font-weight: 100; 
 			}
 			
 		}
 		.user-info {
+			p:first-letter{
+				text-transform: uppercase;
+			}
 			.description {
-				font-size: 1.7rem;
-				text-align: left;
+				// font-size: 1.7rem;
+				// text-align: left;
+				color: #424242;
+        font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+				letter-spacing:0.1em;
+				text-align:center;
+				margin: 40px auto;
+				line-height: 145%;
+				font-size: 14pt;
+				font-variant: small-caps;
+				height: auto;
 			}
 		}
 	}
@@ -74,4 +122,7 @@
 }
 .fa-star-o:before {
   content: "\f006";
+}
+.fa-external-link:before {
+  content: "\f08e";
 }

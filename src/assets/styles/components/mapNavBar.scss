@@ -11,6 +11,7 @@
 	align-items: center;
 	flex-direction: column;
 	transition: height ease-in 0.4s;
+	box-shadow: $boxShadow;
 	@media screen and (min-width: $bpTablet) {
 		width: 0%;
 		right: 0;
@@ -21,7 +22,7 @@
 }
 
 .animateHeight {
-	height: 60% !important;
+	height: 70% !important;
 	@media screen and (min-width: $bpTablet) {
 		height: 100% !important;
 		width: 40% !important;
@@ -32,6 +33,10 @@
 	.icons {
 		opacity: 0;
 		z-index: -1;
+	}
+	.arrow-click {
+		opacity: 1;
+		left: -6.1rem;
 	}
 }
 
@@ -44,21 +49,16 @@
 	width: 5rem;
 	height: 5rem;
 	top: 30%;
-	left: -6.1rem;
 	display: flex;
 	border-radius: 50%;
 	justify-content: center;
+	opacity: 0;
 	align-items: center;
+	box-shadow: $boxShadow;
 	i {
 		font-size: 3rem;
 	}
 }
-
-
-.my-caret:before {
-  content: "\f0d9";
-}
-
 
 .icons {
 	position: absolute;
@@ -73,6 +73,7 @@
 	width: 5rem;
 	height: 5rem;
 	bottom: 42px;
+	box-shadow: $boxShadow;
 	.opacity {
 		opacity: 0.5;
 	}

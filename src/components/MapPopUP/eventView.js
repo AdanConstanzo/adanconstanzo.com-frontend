@@ -19,8 +19,14 @@ const EventView = ({ event }) => {
 				</div>
 			</div>
 			<div class="user-info">
-				<p class="description">{event.description}</p>
-				<a href="/more" >More Information</a>
+				<p class="description center">{event.description}</p>
+				{/* <a href="/more" >Blog Post</a> */}
+				<div>
+					<a href="/page">
+						Blog Post
+						<i class="fa fa-external-link" aria-hidden="true"></i>
+					</a>
+				</div>
 			</div>
 		</div>
 	);
