@@ -14,7 +14,6 @@ class MapPopUp extends React.Component {
 			open: false,
 			openFilter: false,
 			icons : {},
-			openFilter: false
 		};
 		this.myRef = React.createRef();
 		this.filterRef = React.createRef();
@@ -40,11 +39,7 @@ class MapPopUp extends React.Component {
 			this.setState({ open: false, currentEvent: {}, latlng: {}  });
 		})
     mapEvents.forEach(event => {
-      const { latitude, longitude, name, description, city, id, type, state } = event;
-      const popImageUrl = process.env.NODE_ENV !== "development"
-      ? `https://api.adanconstanzo.com${event.popUpImage.url}`
-      : process.env.REACT_APP_BACKEND_URL + event.popUpImage.url;
-      const hikeUrl = `/hike/${id}`;
+      const { latitude, longitude, type } = event;
       // Setting default icons to pointOfInterest else custom icon. 
       const icon = (type === "pointOfInterest") ? null : { icon: icons[type] }
       const marker = L.marker([latitude, longitude], icon).addTo(mymap).on('click', (e) => {

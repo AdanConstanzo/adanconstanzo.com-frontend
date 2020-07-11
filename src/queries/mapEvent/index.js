@@ -14,6 +14,7 @@ const MAP_EVENT_QUERY = gql`
 			city
 			state
 			description
+			starRating
 		}
 		mapIcon {
 			hike {
