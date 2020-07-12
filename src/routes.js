@@ -8,6 +8,7 @@ import Blogs from './pages/Blogs';
 import Book from './pages/Book';
 import Books from './pages/Books';
 import EventMap from './pages/EventMap';
+import Event from './pages/Event';
 // Component
 function Routes() {
   return (
@@ -20,6 +21,7 @@ function Routes() {
         <Route path="/book/:id" component={Book} exact />
         <Route path="/books" component={Books} exact />
         <Route path="/eventMap" component={EventMap} exact />
+        <Route path="/event/:id" component={Event} exact />
       </Switch>
     </div>
   );

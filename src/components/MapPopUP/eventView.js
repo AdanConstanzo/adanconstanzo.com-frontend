@@ -16,9 +16,8 @@ const EventView = ({ event }) => {
 			</div>
 			<div class="user-info">
 				<p class="description center">{event.description}</p>
-				{/* <a href="/more" >Blog Post</a> */}
 				<div>
-					<a href="/page">
+					<a href={`/event/${event.id}`} target="_blank" rel="noopener noreferrer" >
 						Blog Post
 						<i class="fa fa-external-link" aria-hidden="true"></i>
 					</a>
