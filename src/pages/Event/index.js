@@ -46,11 +46,9 @@ const Eventwrapper = ({ mapEvent, style, transformImageUri }) => (
     </div>
     <div className="single">
       <div className="content" >
+        {mapEvent.blog === null && <center><p>There isn't a post here yet!</p></center>} 
         <ReactMarkdown source={mapEvent.blog} transformImageUri={transformImageUri} />
       </div>
-      {/* <div className="anchor">
-        <a href="/blogs" >Check out my other blogs</a>
-      </div> */}
     </div>
   </div>
 );

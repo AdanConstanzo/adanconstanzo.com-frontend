@@ -70,6 +70,10 @@
 			width: 60%;
 		}
 		@include blogAnchors();
+		h6 {
+			font-size: 1.8rem;
+			text-align: center;
+		}
 	}
 
 	.anchor {
