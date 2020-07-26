@@ -23,7 +23,7 @@ class TypeToggle extends React.Component {
 		const { cssClass } = this.state;
 		const currentClass = `${type} ${cssClass}`;
 		return(
-			<img class={currentClass} onClick={this.toggleType} src={src} alt={type} />
+			<img className={currentClass} onClick={this.toggleType} src={src} alt={type} />
 		)
 	}
 }

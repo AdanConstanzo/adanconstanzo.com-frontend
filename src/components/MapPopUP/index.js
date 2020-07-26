@@ -32,7 +32,7 @@ class MapPopUp extends React.Component {
 			"trip": {}
 		}
 		// resetting state for latlong
-		mymap.on('click', (e) => {
+		mymap.on('click', (_) => {
 			this.setState({ latlng: {} });
 			this.myRef.current.classList.remove('animateHeight');
 			this.currentContent.current.classList.remove('setOpacityTo1');
@@ -54,7 +54,6 @@ class MapPopUp extends React.Component {
       mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
 		this.setState({ mapEventMap, icons });
-		console.log(icons);
 	}
 
 	// Function to generate icons for map.
@@ -134,16 +133,16 @@ class MapPopUp extends React.Component {
 		const { currentEvent, icons } = this.state;
 		return (
 			<div id="mapNavBar" style={{ zIndex: 1000 }} ref={this.myRef} >
-				<div onClick={this.openSideNav} class="arrow-click" >
-					<i class="fa my-caret" aria-hidden="true"></i>
+				<div onClick={this.openSideNav} className="arrow-click" >
+					<i className="fa my-caret" aria-hidden="true"></i>
 				</div>
-				<div class="icons icon-hide" ref={this.filterRef} >
-					{Object.keys(icons).map(type => <TypeToggle type={type} hideType={this.hideType(type)} showType={this.showType(type)}  src={icons[type].options.iconUrl} />)}
-					<i onClick={this.openFilter} class="fa fa-filter" aria-hidden="true"></i>
+				<div className="icons icon-hide" ref={this.filterRef} >
+					{Object.keys(icons).map((type, i) => <TypeToggle key={i} type={type} hideType={this.hideType(type)} showType={this.showType(type)}  src={icons[type].options.iconUrl} />)}
+					<i onClick={this.openFilter} className="fa fa-filter" aria-hidden="true"></i>
 				</div>
 				{/* <p>{latlng.lat}</p>
 				{(typeof latlng.lat === "number") && <p>Good morning</p>} */}
-				<div ref={this.currentContent} class="eventContent">
+				<div ref={this.currentContent} className="eventContent">
 					{Object.keys(currentEvent).length > 0 && <EventView event={currentEvent} />}	
 				</div>
 			</div>

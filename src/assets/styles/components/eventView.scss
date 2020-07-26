@@ -127,3 +127,65 @@
 .fa-external-link:before {
   content: "\f08e";
 }
+
+.galleryIcon {
+	font-size: 1.5rem;
+	float: left;
+	cursor: pointer;
+}
+
+.galleryIcon i {
+	margin-left: 1rem;
+}
+
+.ImageModal {
+	position: absolute;
+	top: 0;
+	z-index: 1000;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0,0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: opacity ease-in 0.2s;
+	.Content {
+		width: 95vw;
+		height: 80vh;
+		background-color: #eaeaea;
+		border-radius: 25px;
+		padding: 5rem;
+		position: relative;
+		display: flex;
+		@media screen and (min-width: $bpTablet) {
+			width: 60vw;
+		}
+		> div {
+			width: 100%;
+		}
+		.Gallery {
+			display: flex;
+			height: 100%;
+			flex-direction: column;
+			i {
+				font-size: 2rem;
+				cursor: pointer;
+				position: absolute;
+				right: 3rem;
+				top: 2rem;
+			}
+			p {
+				text-align: center;
+				font-size: 2rem;
+				padding-bottom: 1rem;
+			}
+			> div {
+				overflow-y: scroll;
+				height: 100%;
+				&::-webkit-scrollbar { 
+					display: none;
+				}
+			}
+		}
+	}
+}

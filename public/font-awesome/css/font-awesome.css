@@ -197,3 +197,11 @@
   overflow: visible;
   clip: auto;
 }
+
+.fa-photo:before, .fa-image:before, .fa-picture-o:before {
+  content: "\f03e";
+}
+
+.fa-times::before {
+  content: "\f00d	";
+}
