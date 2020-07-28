@@ -17,7 +17,7 @@ const EventView = ({ event }) => {
 				<div className="general-info">
 					<p className="name">{event.name}</p>
 					<p className="location">{event.city}, {event.state}</p>
-					<StarRating stars={event.starRating} />
+					{event.showRating &&<StarRating stars={event.starRating} />}
 				</div>
 				<div className="user-info">
 					<p className="description center">{event.description}</p>

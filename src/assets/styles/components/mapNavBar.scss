@@ -88,7 +88,7 @@
 		transition: opacity ease-in 0.1s;
 	}
 	&.animateFilter {
-		width: 31.2rem !important;
+		width: 26.2rem !important;
 		.fa-filter {
 			&:before {
 				content: "\f137";
@@ -119,7 +119,7 @@
 			padding-right: 0;
 		}
 		&.animateFilter {
-			height: 29rem !important;
+			height: 24rem !important;
 			width: 5rem !important;
 			min-width: unset;
 			.fa-filter {

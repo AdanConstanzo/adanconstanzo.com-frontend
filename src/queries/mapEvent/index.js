@@ -15,6 +15,7 @@ const MAP_EVENT_QUERY = gql`
 			state
 			description
 			starRating
+			showRating
 		}
 		mapIcon {
 			hike {
@@ -28,11 +29,6 @@ const MAP_EVENT_QUERY = gql`
 				height
 			}
 			food {
-				url
-				width
-				height
-			}
-			trip {
 				url
 				width
 				height
