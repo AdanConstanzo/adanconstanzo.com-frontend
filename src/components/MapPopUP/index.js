@@ -16,6 +16,7 @@ class MapPopUp extends React.Component {
 			openFilter: false,
 			openFeature: false,
 			icons : {},
+			HasFeatures: false
 		};
 		this.myRef = createRef();
 		this.filterRef = createRef();
@@ -59,7 +60,7 @@ class MapPopUp extends React.Component {
       tempEvent.marker = marker;
       mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
-		this.setState({ mapEventMap, icons });
+		this.setState({ mapEventMap, icons, HasFeatures: JSON.parse(localStorage.getItem("HasFeatures")) });
 	}
 
 	// Function to generate icons for map.
@@ -152,7 +153,7 @@ class MapPopUp extends React.Component {
 	}
 
 	render() {
-		const { currentEvent, icons } = this.state;
+		const { currentEvent, icons, HasFeatures } = this.state;
 		return (
 			<div id="mapNavBar" style={{ zIndex: 1000 }} ref={this.myRef} >
 				<div onClick={this.openSideNav} className="arrow-click" >
@@ -167,12 +168,14 @@ class MapPopUp extends React.Component {
 						filterRef={this.filterRef}
 						featureRef={this.featureRef}
 					/>
-					<FeatureToggle
-						filterRef={this.filterRef} 
-						featureRef={this.featureRef}
-						openFeature={this.openFeature}
-						MyMapClickFunction={this.MyMapClickFunction}
-					/>
+					{HasFeatures &&
+						<FeatureToggle
+							filterRef={this.filterRef} 
+							featureRef={this.featureRef}
+							openFeature={this.openFeature}
+							MyMapClickFunction={this.MyMapClickFunction}
+						/>
+					}	
 				</div>
 				<div ref={this.currentContent} className="eventContent">
 					{Object.keys(currentEvent).length > 0 && <EventView event={currentEvent} />}	
