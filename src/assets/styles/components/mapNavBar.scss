@@ -60,8 +60,33 @@
 	}
 }
 
-.icons {
+.DisplayNone {
+	display: none !important;
+}
+
+.Settings {
 	position: absolute;
+	bottom: 4.2rem;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-direction: row;
+	width: 26rem;
+	height: 5rem;
+	@media screen and (min-width: $bpTablet) {
+		top: 40%;
+		left: -6.1rem;
+		flex-direction: column;
+		width: 5rem;
+		height: 24rem;
+		i {
+			padding-bottom: 1rem;
+			padding-right: 0;
+		}
+	}
+}
+
+.icons, .features {
 	background-color: #eaeaea;
 	display: flex;
 	justify-content: flex-end;
@@ -69,10 +94,9 @@
 	transition: width ease-in 0.4s, opacity ease-in 0.4s;
 	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
 	border-left: 1px solid #D4D4D4;
-	border-radius: 25px;
+	border-radius: 2.5rem;
 	width: 5rem;
 	height: 5rem;
-	bottom: 42px;
 	box-shadow: $boxShadow;
 	.opacity {
 		opacity: 0.5;
@@ -82,6 +106,54 @@
 		padding-right: 1rem;
 		cursor: pointer;
 	}
+	@media screen and (min-width: $bpTablet) {
+		flex-direction: column;
+		transition: height ease-in 0.4s, opacity ease-in 0.4s;
+		i {
+			padding-bottom: 1rem;
+			padding-right: 0;
+		}
+	}
+}
+
+.features {
+	.feature {
+		opacity: 0.5;
+	}
+	.fa-times.feature {
+		opacity: 1;
+	}
+	.active {
+		opacity: 1 !important;
+	}
+	.fa-bullseye.feature.record {
+		&:before {
+			content: "\f00c";
+		}
+	}
+	&.animateFilter {
+		width: 12.2rem !important;
+		.fa-filter {
+			&:before {
+				content: "\f137";
+			}
+		}
+	}
+	@media screen and (min-width: $bpTablet) {
+		&.animateFilter {
+			height: 13rem !important;
+			width: 5rem !important;
+			min-width: unset;
+			.fa-filter {
+				&:before {
+					content: "\f139";
+				}
+			}
+		}
+	}
+}
+
+.icons {
 	img {
 		cursor: pointer;
 		padding-right: 1rem;
@@ -96,30 +168,20 @@
 		}
 	}
 	@media screen and (min-width: $bpTablet) {
-		top: 40%;
-		left: -6.1rem;
-		height: 5rem;
-		flex-direction: column;
-		width: 5rem;
-		transition: height ease-in 0.4s, opacity ease-in 0.4s;;
 		img {
-			width: 41px;
+			width: 4.1rem;
 			height: auto;
 			padding-bottom: 1rem;
 			padding-right: 0;
 			&.hike {
-				width: 30px;
+				width: 3rem;
 			}
 			&.pointOfInterest {
-				width: 25px;
+				width: 2.5rem;
 			}
 		}
-		i {
-			padding-bottom: 1rem;
-			padding-right: 0;
-		}
 		&.animateFilter {
-			height: 24rem !important;
+			height: 25rem !important;
 			width: 5rem !important;
 			min-width: unset;
 			.fa-filter {
@@ -131,7 +193,7 @@
 	}
 }
 
-.icon-hide img{
+.icon-hide img, .icon-hide .feature {
 	opacity: 0 !important;
 	position: absolute !important; 
 	z-index: -1 !important;

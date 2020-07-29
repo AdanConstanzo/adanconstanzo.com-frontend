@@ -205,3 +205,19 @@
 .fa-times::before {
   content: "\f00d	";
 }
+
+.fa-archive:before {
+  content: "\f187";
+}
+
+.fa-bullhorn:before {
+  content: "\f0a1";
+}
+
+.fa-bullseye:before {
+  content: "\f140";
+}
+
+.fa-check:before {
+  content: "\f00c";
+}

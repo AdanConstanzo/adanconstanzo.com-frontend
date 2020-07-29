@@ -1,8 +1,9 @@
 // Libraries
-import React from 'react';
+import React, { createRef } from 'react';
 // Components
 import TypeToggle from './typeToggle';
 import EventView from './eventView';
+import FeatureToggle from './FeatureToggle';
 // Component
 class MapPopUp extends React.Component {
 	constructor(props) {
@@ -13,11 +14,19 @@ class MapPopUp extends React.Component {
 			latlng: {},
 			open: false,
 			openFilter: false,
+			openFeature: false,
 			icons : {},
 		};
-		this.myRef = React.createRef();
-		this.filterRef = React.createRef();
-		this.currentContent = React.createRef();
+		this.myRef = createRef();
+		this.filterRef = createRef();
+		this.currentContent = createRef();
+		this.featureRef = createRef();
+	}
+	MyMapClickFunction = () => {
+		this.setState({ latlng: {} });
+		this.myRef.current.classList.remove('animateHeight');
+		this.currentContent.current.classList.remove('setOpacityTo1');
+		this.setState({ open: false, currentEvent: {}, latlng: {}  });	
 	}
 	componentDidMount() {
 		const { mapEvents, mapIcon } = this.props;
@@ -32,11 +41,8 @@ class MapPopUp extends React.Component {
 			"trip": {}
 		}
 		// resetting state for latlong
-		mymap.on('click', (_) => {
-			this.setState({ latlng: {} });
-			this.myRef.current.classList.remove('animateHeight');
-			this.currentContent.current.classList.remove('setOpacityTo1');
-			this.setState({ open: false, currentEvent: {}, latlng: {}  });
+		mymap.on('click', (e) => {
+			this.MyMapClickFunction()
 		})
     mapEvents.forEach(event => {
       const { latitude, longitude, type } = event;
@@ -53,6 +59,20 @@ class MapPopUp extends React.Component {
       tempEvent.marker = marker;
       mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
+
+		var latlngs = [
+			[33.71048323906857, -117.74696532496073],
+			[33.71182208834692, -117.74565691303044],
+			[33.71308648813093, -117.7436892272084],
+		]
+		new L.polyline(latlngs, {
+				color: 'red',
+				weight: 3,
+				opacity: 0.5,
+				smoothFactor: 1
+		}).addTo(mymap);
+		
+		
 		this.setState({ mapEventMap, icons });
 	}
 
@@ -115,18 +135,34 @@ class MapPopUp extends React.Component {
 		}
 	};
 
-	openFilter = () => {
+	openFilter = (filterRef, featureRef) => () => {
 		const { openFilter } = this.state;
 		if (openFilter) {
-			this.filterRef.current.classList.remove('animateFilter');
-			this.filterRef.current.classList.add('icon-hide');
+			filterRef.current.classList.remove('animateFilter');
+			filterRef.current.classList.add('icon-hide');
+			featureRef.current.classList.remove('DisplayNone');
 		} else {
-			this.filterRef.current.classList.add('animateFilter');
+			filterRef.current.classList.add('animateFilter');
+			featureRef.current.classList.add('DisplayNone');
 			setTimeout(() => {
-				this.filterRef.current.classList.remove('icon-hide');
+				filterRef.current.classList.remove('icon-hide');
 			}, 400);
 		}
-		this.setState({ openFilter: !openFilter })
+		this.setState({ openFilter: !openFilter });
+	}
+
+	openFeature = (filterRef, featureRef) => () => {
+		const { openFeature } = this.state;
+		if (openFeature) {
+			filterRef.current.classList.remove('animateFilter');
+			filterRef.current.classList.add('icon-hide');
+		} else {
+			filterRef.current.classList.add('animateFilter');
+			setTimeout(() => {
+				filterRef.current.classList.remove('icon-hide');
+			}, 400);
+		}
+		this.setState({ openFeature: !openFeature });
 	}
 
 	render() {
@@ -136,12 +172,22 @@ class MapPopUp extends React.Component {
 				<div onClick={this.openSideNav} className="arrow-click" >
 					<i className="fa my-caret" aria-hidden="true"></i>
 				</div>
-				<div className="icons icon-hide" ref={this.filterRef} >
-					{Object.keys(icons).map((type, i) => <TypeToggle key={i} type={type} hideType={this.hideType(type)} showType={this.showType(type)}  src={icons[type].options.iconUrl} />)}
-					<i onClick={this.openFilter} className="fa fa-filter" aria-hidden="true"></i>
+				<div className="Settings">
+					<TypeToggle 
+						icons={icons}
+						openFilter={this.openFilter}
+						hideType={this.hideType}
+						showType={this.showType}
+						filterRef={this.filterRef}
+						featureRef={this.featureRef}
+					/>
+					<FeatureToggle
+						filterRef={this.filterRef} 
+						featureRef={this.featureRef}
+						openFeature={this.openFeature}
+						MyMapClickFunction={this.MyMapClickFunction}
+					/>
 				</div>
-				{/* <p>{latlng.lat}</p>
-				{(typeof latlng.lat === "number") && <p>Good morning</p>} */}
 				<div ref={this.currentContent} className="eventContent">
 					{Object.keys(currentEvent).length > 0 && <EventView event={currentEvent} />}	
 				</div>

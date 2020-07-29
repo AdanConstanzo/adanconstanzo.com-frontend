@@ -1,31 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-class TypeToggle extends React.Component {
-	state ={
-		toggle: false,
-		cssClass: ""
-	};
+const TypeToggle = ({ icons, openFilter, hideType, showType, filterRef, featureRef }) => (
+	<div className="icons icon-hide" ref={filterRef} >
+		{Object.keys(icons).map((type, i) => <TypeToggleItem key={i} type={type} hideType={hideType(type)} showType={showType(type)}  src={icons[type].options.iconUrl} />)}
+		<i onClick={openFilter(filterRef, featureRef)} className="fa fa-filter" aria-hidden="true"></i>
+	</div>
+);
 
-	toggleType = () => {
-		const { hideType, showType } = this.props;
-		const { toggle } = this.state;
+const TypeToggleItem = ({ hideType, showType, src, type }) => {
+	const [toggle, setToggle] = useState(false);
+	const [cssClass, setCssClass] = useState("");
+	const toggleType = () => {
 		if (toggle) {
-			this.setState({ cssClass: "", toggle: false });
+			setCssClass("");
+			setToggle(false);
 			showType()
 		} else {
-			this.setState({ cssClass: "opacity", toggle: true });
+			setCssClass("opacity");
+			setToggle(true);
 			hideType()
 		}
 	}
-
-	render(){
-		const { src, type } = this.props;
-		const { cssClass } = this.state;
-		const currentClass = `${type} ${cssClass}`;
-		return(
-			<img className={currentClass} onClick={this.toggleType} src={src} alt={type} />
-		)
-	}
+	return (
+		<img className={`${type} ${cssClass}`} onClick={toggleType} src={src} alt={type} />
+	);
 }
 
 export default TypeToggle;
