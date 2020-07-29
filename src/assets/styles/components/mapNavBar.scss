@@ -131,6 +131,11 @@
 			content: "\f00c";
 		}
 	}
+	.fa-times.feature.undo {
+		&:before {
+			content: "\f0e2";
+		}
+	}
 	&.animateFilter {
 		width: 12.2rem !important;
 		.fa-filter {

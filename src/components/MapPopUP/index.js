@@ -59,20 +59,6 @@ class MapPopUp extends React.Component {
       tempEvent.marker = marker;
       mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
-
-		var latlngs = [
-			[33.71048323906857, -117.74696532496073],
-			[33.71182208834692, -117.74565691303044],
-			[33.71308648813093, -117.7436892272084],
-		]
-		new L.polyline(latlngs, {
-				color: 'red',
-				weight: 3,
-				opacity: 0.5,
-				smoothFactor: 1
-		}).addTo(mymap);
-		
-		
 		this.setState({ mapEventMap, icons });
 	}
 
