@@ -1,9 +1,13 @@
 // Libraries
 import React, { useState, Fragment, useEffect, useRef } from 'react';
+import { useQuery } from "@apollo/react-hooks";
 import { Portal } from 'react-portal';
+// Components
 import StarRating from './starRating';
 import Gallery from '../Gallery'
-
+// Query
+import MAP_HIKE_ROUTE from '../../queries/mapEvent/HikeRoute';
+let line = null;
 // Component
 const EventView = ({ event }) => {
 	const popImageUrl = process.env.NODE_ENV !== "development"
@@ -31,7 +35,8 @@ const EventView = ({ event }) => {
 				</div>
 			</div>
 			{ visible && <ImageModal id={event.id} setVisible={setVisible} name={event.name} />}
-			
+			{/* IF hike then grab routeCoordinates, else plot nothing. */}
+			{event.type === "hike" ? <GetHikeRoute id={event.id}/> : <PaintRoute RouteCoordinaates={null} />}
 		</Fragment>
 	);
 }
@@ -58,6 +63,40 @@ const ImageModal = ({ id, name, setVisible }) => {
 			</div>
 		</Portal>
 	)
+}
+
+// Paints polyline to map based on routeCoordinates from hike.
+// Doesn't return anything, just runs some javascript from component. 
+// Required to pass in a component for Apollo useQuery hook.
+const PaintRoute = ({ RouteCoordinaates }) => {
+	useEffect(() => {
+		const latlngs = JSON.parse(RouteCoordinaates);
+		const L = window.L;
+		const mymap = window.mymap;
+		if (line !== null) {
+			if (line.remove) {
+				line.remove(mymap);
+			}
+		}
+		if (latlngs !== null) {
+			line = new L.polyline(latlngs, {
+				color: 'red',
+				weight: 3,
+				opacity: 0.5,
+				smoothFactor: 1
+			});
+			line.addTo(mymap);
+		}
+	}, [RouteCoordinaates]);
+	return (
+		null
+	)
+}
+// Retrieves data from MAP_HIKE_ROUTE query and returns PaintRoute to plot route.
+const GetHikeRoute = ({ id }) => {
+	const { data, loading } = useQuery(MAP_HIKE_ROUTE, { variables: { id } });
+	if (loading) return null;
+	return <PaintRoute RouteCoordinaates={data.mapEvent.routeCoordinates} />
 }
 
 export default EventView;

@@ -58,7 +58,7 @@ class MapPopUp extends React.Component {
 			});
       const tempEvent = {...event};
       tempEvent.marker = marker;
-      mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
+			mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
 		this.setState({ mapEventMap, icons, HasFeatures: JSON.parse(localStorage.getItem("HasFeatures")) });
 	}
