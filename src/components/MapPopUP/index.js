@@ -1,5 +1,6 @@
 // Libraries
 import React, { createRef } from 'react';
+import { IsMobile } from '../../utils/index';
 // Components
 import TypeToggle from './typeToggle';
 import EventView from './eventView';
@@ -16,7 +17,8 @@ class MapPopUp extends React.Component {
 			openFilter: false,
 			openFeature: false,
 			icons : {},
-			HasFeatures: false
+			HasFeatures: false,
+			isMobile: false,
 		};
 		this.myRef = createRef();
 		this.filterRef = createRef();
@@ -34,6 +36,7 @@ class MapPopUp extends React.Component {
 		const L = window.L;
     const mymap = window.mymap;
 		const icons = this.generateIcons(mapIcon);
+		const isMobile = IsMobile();
 		const mapEventMap = {
 			"hike": {},
 			"cruise": {},
@@ -55,12 +58,16 @@ class MapPopUp extends React.Component {
 				this.myRef.current.classList.add('animateHeight');
 				this.currentContent.current.classList.add('setOpacityTo1');
 				this.setState({ open: true, currentEvent: mapEventMap[type][`${lat}-${lng}`], latlng: e.latlng });
+				const D = 0.01140599716802626;
+				if (!isMobile) {
+					mymap.flyTo([latitude, longitude + D], 14);
+				}
 			});
       const tempEvent = {...event};
       tempEvent.marker = marker;
 			mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
-		this.setState({ mapEventMap, icons, HasFeatures: JSON.parse(localStorage.getItem("HasFeatures")) });
+		this.setState({ mapEventMap, icons, HasFeatures: JSON.parse(localStorage.getItem("HasFeatures")), isMobile });
 	}
 
 	// Function to generate icons for map.
@@ -153,7 +160,7 @@ class MapPopUp extends React.Component {
 	}
 
 	render() {
-		const { currentEvent, icons, HasFeatures } = this.state;
+		const { currentEvent, icons, HasFeatures, isMobile } = this.state;
 		return (
 			<div id="mapNavBar" style={{ zIndex: 1000 }} ref={this.myRef} >
 				<div onClick={this.openSideNav} className="arrow-click" >
@@ -168,7 +175,7 @@ class MapPopUp extends React.Component {
 						filterRef={this.filterRef}
 						featureRef={this.featureRef}
 					/>
-					{HasFeatures &&
+					{(HasFeatures && !isMobile) &&
 						<FeatureToggle
 							filterRef={this.filterRef} 
 							featureRef={this.featureRef}
@@ -178,7 +185,7 @@ class MapPopUp extends React.Component {
 					}	
 				</div>
 				<div ref={this.currentContent} className="eventContent">
-					{Object.keys(currentEvent).length > 0 && <EventView event={currentEvent} />}	
+					{Object.keys(currentEvent).length > 0 && <EventView event={currentEvent} isMobile={isMobile} />}	
 				</div>
 			</div>
 		)

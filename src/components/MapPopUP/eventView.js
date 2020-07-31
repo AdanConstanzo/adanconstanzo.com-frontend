@@ -9,7 +9,7 @@ import Gallery from '../Gallery'
 import MAP_HIKE_ROUTE from '../../queries/mapEvent/HikeRoute';
 let line = null;
 // Component
-const EventView = ({ event }) => {
+const EventView = ({ event, isMobile }) => {
 	const popImageUrl = process.env.NODE_ENV !== "development"
 	? `https://api.adanconstanzo.com${event.popUpImage.url}`
 	: process.env.REACT_APP_BACKEND_URL + event.popUpImage.url;
@@ -36,7 +36,7 @@ const EventView = ({ event }) => {
 			</div>
 			{ visible && <ImageModal id={event.id} setVisible={setVisible} name={event.name} />}
 			{/* IF hike then grab routeCoordinates, else plot nothing. */}
-			{event.type === "hike" ? <GetHikeRoute id={event.id}/> : <PaintRoute RouteCoordinaates={null} />}
+			{(event.type === "hike" && !isMobile) ? <GetHikeRoute id={event.id}/> : <PaintRoute RouteCoordinaates={null} />}
 		</Fragment>
 	);
 }
