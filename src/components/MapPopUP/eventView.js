@@ -27,10 +27,12 @@ const EventView = ({ event, isMobile }) => {
 					<p className="description center">{event.description}</p>
 					<div>
 						<span onClick={()=>setVisible(true)} className="galleryIcon">Images<i className="fa fa-picture-o" aria-hidden="true"></i></span>
-						<a href={`/event/${event.id}`} target="_blank" rel="noopener noreferrer" >
-							Blog Post
-							<i className="fa fa-external-link" aria-hidden="true"></i>
-						</a>
+						{event.showBlog && 
+							<a href={`/event/${event.id}`} target="_blank" rel="noopener noreferrer" >
+								Blog Post
+								<i className="fa fa-external-link" aria-hidden="true"></i>
+							</a>
+						}
 					</div>
 				</div>
 			</div>

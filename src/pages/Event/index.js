@@ -18,6 +18,17 @@ const Event = () => {
   return (
     <Query query={EVENT_QUERY} id={id}>
       {({ data: { mapEvent, footers } }) => {
+        if (mapEvent == null) {
+          return (
+            <div>
+              404
+            </div>
+          )
+        } else if (mapEvent.header == null ) {
+          return (
+            <div>404</div>
+          )
+        }
         const HeaderUrl = process.env.NODE_ENV !== "development"
         ? `https://api.adanconstanzo.com${mapEvent.header.url}`
         : process.env.REACT_APP_BACKEND_URL + mapEvent.header.url;

@@ -58,9 +58,14 @@ class MapPopUp extends React.Component {
 				this.myRef.current.classList.add('animateHeight');
 				this.currentContent.current.classList.add('setOpacityTo1');
 				this.setState({ open: true, currentEvent: mapEventMap[type][`${lat}-${lng}`], latlng: e.latlng });
-				const D = 0.01140599716802626;
+				const H = 0.01140599716802626;
+				const F = 0.00080599716802626;
 				if (!isMobile) {
-					mymap.flyTo([latitude, longitude + D], 14);
+					if (type === 'food') {
+						mymap.flyTo([latitude, longitude + F], 18);
+					} else {
+						mymap.flyTo([latitude, longitude + H], 14);	
+					}
 				}
 			});
       const tempEvent = {...event};

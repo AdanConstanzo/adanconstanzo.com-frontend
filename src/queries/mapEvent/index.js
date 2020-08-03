@@ -16,6 +16,7 @@ const MAP_EVENT_QUERY = gql`
 			description
 			starRating
 			showRating
+			showBlog
 		}
 		mapIcon {
 			hike {
