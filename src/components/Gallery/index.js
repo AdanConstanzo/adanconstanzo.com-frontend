@@ -43,11 +43,13 @@ const GalleryContent = ({ mapEvent, name, setVisible }) => {
 					thumbnail: thumbnailUrl,
 					thumbnailWidth: thumbnailImage.width,
 					thumbnailHeight: thumbnailImage.height,
+					caption: image.caption
 				}
 			}));
 		}
 		getImages(mapEvent).then(res => {
 			setImages(res);
+			console.log(res);
 			setLoad(true);
 		});
 	}, [mapEvent]);

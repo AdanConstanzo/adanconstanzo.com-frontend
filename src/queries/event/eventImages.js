@@ -8,6 +8,7 @@ const GALLERY_QUERY = gql`
 				ext
 				hash
 				url
+				caption
 			}
 		}
 	}
