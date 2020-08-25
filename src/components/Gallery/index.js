@@ -49,7 +49,6 @@ const GalleryContent = ({ mapEvent, name, setVisible }) => {
 		}
 		getImages(mapEvent).then(res => {
 			setImages(res);
-			console.log(res);
 			setLoad(true);
 		});
 	}, [mapEvent]);

@@ -3,6 +3,7 @@ import React, { createRef } from 'react';
 import { IsMobile } from '../../utils/index';
 // Components
 import TypeToggle from './typeToggle';
+import CategoryToggle from './CategoryToggle';
 import EventView from './eventView';
 import FeatureToggle from './FeatureToggle';
 // Component
@@ -24,6 +25,7 @@ class MapPopUp extends React.Component {
 		this.filterRef = createRef();
 		this.currentContent = createRef();
 		this.featureRef = createRef();
+		this.categoryRef = createRef();
 	}
 	MyMapClickFunction = () => {
 		this.setState({ latlng: {} });
@@ -134,20 +136,26 @@ class MapPopUp extends React.Component {
 		}
 	};
 
-	openFilter = (filterRef, featureRef) => () => {
+	openFilter = (filterRef, featureRef, categoryRef) => () => {
 		const { openFilter } = this.state;
 		if (openFilter) {
 			filterRef.current.classList.remove('animateFilter');
 			filterRef.current.classList.add('icon-hide');
 			featureRef.current.classList.remove('DisplayNone');
+			categoryRef.current.classList.remove('DisplayNone');
 		} else {
 			filterRef.current.classList.add('animateFilter');
 			featureRef.current.classList.add('DisplayNone');
+			categoryRef.current.classList.add('DisplayNone');
 			setTimeout(() => {
 				filterRef.current.classList.remove('icon-hide');
 			}, 400);
 		}
 		this.setState({ openFilter: !openFilter });
+	}
+
+	openCategory = () => {
+
 	}
 
 	openFeature = (filterRef, featureRef) => () => {
@@ -179,6 +187,10 @@ class MapPopUp extends React.Component {
 						showType={this.showType}
 						filterRef={this.filterRef}
 						featureRef={this.featureRef}
+						categoryRef={this.categoryRef}
+					/>
+					<CategoryToggle
+						categoryRef={this.categoryRef}
 					/>
 					{(HasFeatures && !isMobile) &&
 						<FeatureToggle
@@ -187,7 +199,8 @@ class MapPopUp extends React.Component {
 							openFeature={this.openFeature}
 							MyMapClickFunction={this.MyMapClickFunction}
 						/>
-					}	
+					}
+
 				</div>
 				<div ref={this.currentContent} className="eventContent">
 					{Object.keys(currentEvent).length > 0 && <EventView event={currentEvent} isMobile={isMobile} />}	

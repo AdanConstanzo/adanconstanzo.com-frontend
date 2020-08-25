@@ -221,3 +221,7 @@
 .fa-check:before {
   content: "\f00c";
 }
+
+.fa-window-maximize:before {
+  content: "\f2d0";
+}

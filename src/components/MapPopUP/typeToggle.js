@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const TypeToggle = ({ icons, openFilter, hideType, showType, filterRef, featureRef }) => (
+const TypeToggle = ({ icons, openFilter, hideType, showType, filterRef, featureRef, categoryRef }) => (
 	<div className="icons icon-hide" ref={filterRef} >
 		{Object.keys(icons).map((type, i) => <TypeToggleItem key={i} type={type} hideType={hideType(type)} showType={showType(type)}  src={icons[type].options.iconUrl} />)}
-		<i onClick={openFilter(filterRef, featureRef)} className="fa fa-filter" aria-hidden="true"></i>
+		<i onClick={openFilter(filterRef, featureRef, categoryRef)} className="fa fa-filter" aria-hidden="true"></i>
 	</div>
 );
 
