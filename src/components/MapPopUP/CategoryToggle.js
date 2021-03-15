@@ -15,6 +15,7 @@ const CategoryPanel = ({ close }) => (
 	<div className="CategoryPanel">
 		<div className="Panel Content">
 			<i className="fa fa-times Close" aria-hidden="true" onClick={() => close(false)} ></i>
+			<div>Hello</div>
 		</div>
 	</div>
 );
