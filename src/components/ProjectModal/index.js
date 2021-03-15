@@ -27,7 +27,7 @@ const ProjectModal = ({ project }) => {
 				</div>
 				<div className="modal__content__footer" >
 					{project.liveSite && <a href={project.liveSite} target="_blank" rel="noopener noreferrer" >Check out the live site</a> }
-					{project.blogPost && <a href={project.blogPost} target="_blank" rel="noopener noreferrer"  >Check out the blog post</a> }
+					{project.BlogPost && <a href={`/blog/${project.BlogPost.id}`} target="_blank" rel="noopener noreferrer"  >Check out the blog post</a> }
 				</div>
 			</div>	
 		</div>
