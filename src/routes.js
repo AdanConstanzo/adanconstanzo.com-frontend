@@ -7,17 +7,18 @@ import Main from './pages/Main';
 import Blogs from './pages/Blogs';
 import Book from './pages/Book';
 import Books from './pages/Books';
+import NoMatch from './pages/NoMatch';
 // Component
 function Routes() {
   return (
     <div className="App">
-      {/* <Header /> */}
       <Switch>
         <Route path="/" component={Main} exact />
         <Route path="/blog/:id" component={Blog} exact />
         <Route path="/blogs" component={Blogs} exact />
         <Route path="/book/:id" component={Book} exact />
         <Route path="/books" component={Books} exact />
+        <Route path="*" component={NoMatch} />
       </Switch>
     </div>
   );
