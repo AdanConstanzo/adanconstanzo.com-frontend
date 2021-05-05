@@ -43,7 +43,9 @@ const PROJECTS_QUERY = gql`
 				url
 			}
 			liveSite
-			blogPost
+			BlogPost {
+        id
+      }
 			modalDescription
 			modalTech
 			modalId

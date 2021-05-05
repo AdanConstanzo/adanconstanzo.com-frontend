@@ -204,6 +204,7 @@ class MapPopUp extends React.Component {
 					{Object.keys(mapEventMap).length > 0 && 
 						<CategoryToggle
 							categoryRef={this.categoryRef}
+							mapEventMap={mapEventMap}
 						/>
 					}
 					{(HasFeatures && !isMobile) &&

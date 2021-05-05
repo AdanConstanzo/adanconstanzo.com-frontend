@@ -9,11 +9,11 @@ import Book from './pages/Book';
 import Books from './pages/Books';
 import EventMap from './pages/EventMap';
 import Event from './pages/Event';
+import NoMatch from './pages/NoMatch';
 // Component
 function Routes() {
   return (
     <div className="App">
-      {/* <Header /> */}
       <Switch>
         <Route path="/" component={Main} exact />
         <Route path="/blog/:id" component={Blog} exact />
@@ -22,6 +22,7 @@ function Routes() {
         <Route path="/books" component={Books} exact />
         <Route path="/eventMap" component={EventMap} exact />
         <Route path="/event/:id" component={Event} exact />
+        <Route path="*" component={NoMatch} />
       </Switch>
     </div>
   );
