@@ -5,6 +5,13 @@ const IsMobile = () => {
 	return false;
 }
 
+const FormatUrlSrc = (url) => {
+	return process.env.NODE_ENV !== "development"
+		? `https://api.adanconstanzo.com${url}`
+		: process.env.REACT_APP_BACKEND_URL + url;
+}
+
 export {
-	IsMobile
+	IsMobile,
+	FormatUrlSrc
 }

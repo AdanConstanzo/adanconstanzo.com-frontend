@@ -54,14 +54,27 @@ class MapPopUp extends React.Component {
       const { latitude, longitude, type } = event;
       // Setting default icons to pointOfInterest else custom icon. 
       const icon = (type === "pointOfInterest") ? null : { icon: icons[type] }
-      const marker = L.marker([latitude, longitude], icon).addTo(mymap).on('click', (e) => {
+      const marker = L.marker([latitude, longitude], icon).addTo(mymap).on('click', (e, Lat, Lng) => {
 				const { mapEventMap } = this.state;
-				const { lat, lng } = e.latlng;
+				let lat = null;
+				let lng = null;
+				let latlng = null;
+				if (e === null) {
+					lat = Lat;
+					lng = Lng;
+					latlng = {lat, lng};
+				} else {
+					lat =  e.latlng.lat;	
+					lng = e.latlng.lng;
+					latlng = e.latlng;
+				}
+				
 				this.myRef.current.classList.add('animateHeight');
 				this.currentContent.current.classList.add('setOpacityTo1');
-				this.setState({ open: true, currentEvent: mapEventMap[type][`${lat}-${lng}`], latlng: e.latlng });
+				this.setState({ open: true, currentEvent: mapEventMap[type][`${lat}-${lng}`], latlng });
 				const H = 0.01140599716802626;
 				const F = 0.00080599716802626;
+				// TODO: Find some good constants for mobile fly. 
 				if (!isMobile) {
 					if (type === 'food') {
 						mymap.flyTo([latitude, longitude + F], 18);
@@ -74,6 +87,7 @@ class MapPopUp extends React.Component {
       tempEvent.marker = marker;
 			mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
+		window.try = mapEventMap;
 		this.setState({ mapEventMap, icons, HasFeatures: JSON.parse(localStorage.getItem("HasFeatures")), isMobile });
 	}
 
@@ -186,6 +200,7 @@ class MapPopUp extends React.Component {
 
 	render() {
 		const { currentEvent, icons, HasFeatures, isMobile, mapEventMap } = this.state;
+		const { mapIcon } = this.props;
 		return (
 			<div id="mapNavBar" style={{ zIndex: 1000 }} ref={this.myRef} >
 				<div onClick={this.openSideNav} className="arrow-click" >
@@ -205,6 +220,7 @@ class MapPopUp extends React.Component {
 						<CategoryToggle
 							categoryRef={this.categoryRef}
 							mapEventMap={mapEventMap}
+							mapIcon={mapIcon}
 						/>
 					}
 					{(HasFeatures && !isMobile) &&

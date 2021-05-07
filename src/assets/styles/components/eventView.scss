@@ -199,5 +199,54 @@
 	.Close {
 		font-size: 2rem;
 		cursor: pointer;
+		position: absolute;
+		top: 2rem;
+		left: 2rem;
 	} 
+	.CategoryPanelModal {
+		padding: 5rem 0.5rem 5rem 0.5rem;
+		@media screen and (min-width: 768px) {
+			padding: 5rem;
+		}
+	}
+}
+
+
+
+.EventCategoryWindow {
+	height: 100%;
+	width: 100%;
+	.DesktopTable {
+		height: 80%;
+		overflow: scroll;
+		font-size: 1.5rem;
+		table {
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			th{
+				position: sticky;
+				top: 0;
+				background: #eaeaea;
+				font-size: 2rem;
+			}
+			.Clickable {
+				cursor: pointer;
+				color: blue;
+			}
+		}
+	}
+	.DesktopEventDivision {
+		width: 100%;
+		height: 20%;
+		display: flex;
+    justify-content: space-around;
+    align-items: center;
+		div {
+			cursor: pointer;
+		}
+		.opacity {
+			opacity: 0.4;
+		}
+	}
 }
