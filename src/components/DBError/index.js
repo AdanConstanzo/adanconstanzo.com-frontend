@@ -1,7 +1,6 @@
-// Libraries
 import React from 'react';
-import Amumu from '../../assets/images/amumu.gif'
-// Component
+import Amumu from '../../assets/images/amumu.gif';
+
 const DBError = () => (
   <div className="loadingScreen" >
     <p>Well this is awkward....</p>
@@ -10,4 +9,4 @@ const DBError = () => (
   </div>
 );
 
-export default DBError
+export default DBError;

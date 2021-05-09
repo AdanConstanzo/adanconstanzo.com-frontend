@@ -1,12 +1,10 @@
-// Libraries 
 import React, { useEffect, useState } from 'react';
 import Gallery from 'react-grid-gallery';
-// Components
 import Query from "../Query";
-// Queries
 import GALLERY_QUERY from "../../queries/event/eventImages";
 import LoadingScreen from '../LoadingScreen';
-// Component
+import { FormatUrlSrc } from '../../utils/index';
+
 const Collection = ({ id, name, setVisible }) => (
 	<div>
 		<Query query={GALLERY_QUERY} id={id}>
@@ -18,12 +16,6 @@ const GalleryContent = ({ mapEvent, name, setVisible }) => {
 	const [images, setImages ] = useState([]);
 	const [load, setLoad] = useState(false);
 	useEffect(() => {
-		const GetImageUrl = (url) => {
-			const imageUrl = process.env.NODE_ENV !== "development"
-			? `https://api.adanconstanzo.com${url}`
-			: process.env.REACT_APP_BACKEND_URL + url;
-			return imageUrl;
-		}
 		const loadImage = async (imageUrl) => {
 			const img = new Image();
 			img.src= imageUrl;
@@ -36,10 +28,10 @@ const GalleryContent = ({ mapEvent, name, setVisible }) => {
 		const getImages = async (mapEvent) => {
 			return await Promise.all(mapEvent.Gallery.map(async image => {
 				const thumbnail = `/uploads/thumbnail_${image.hash}${image.ext}`;
-				const thumbnailUrl = GetImageUrl(thumbnail);
+				const thumbnailUrl = FormatUrlSrc(thumbnail);
 				const thumbnailImage = await loadImage(thumbnailUrl);
 				return {
-					src: GetImageUrl(image.url),
+					src: FormatUrlSrc(image.url),
 					thumbnail: thumbnailUrl,
 					thumbnailWidth: thumbnailImage.width,
 					thumbnailHeight: thumbnailImage.height,

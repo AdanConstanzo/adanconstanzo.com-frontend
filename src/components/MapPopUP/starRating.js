@@ -1,6 +1,5 @@
-// Libraries
 import React from 'react';
-// Component
+
 const StarRating = ({ stars }) => {
 	const blankStars = 5 - stars;
 	const starsArray = [...Array(stars)];

@@ -1,18 +1,22 @@
-// Libraries 
 import React, { useEffect } from 'react';
 import Script from 'react-load-script'
-// Components
 import LoadingScreen from '../../components/LoadingScreen';
 import Query from '../../components/Query';
 import MapPopUp from '../../components/MapPopUP';
-// Queries 
 import MAP_EVENT_QUERY from "../../queries/mapEvent";
-// Component
+
 class HikingMap extends React.Component {
+
   state ={
     loaded: false
   };
-  setIt = () => this.setState({ loaded: true })
+
+  componentDidMount() {
+    document.body.classList.add("overflow-hidden");
+  }
+
+  setIt = () => this.setState({ loaded: true });
+  
   render(){
     const { loaded } = this.state;
     if (loaded === true) {
@@ -49,7 +53,6 @@ const Map = (props) => {
     window.mymap = L.map('mapid').setView([34.0522, -118.2437], 10);
     const mymap = window.mymap;
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        // attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
         maxZoom: 18,
         id: 'mapbox/streets-v11',
         tileSize: 512,

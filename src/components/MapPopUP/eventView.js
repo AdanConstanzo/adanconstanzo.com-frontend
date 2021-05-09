@@ -1,14 +1,11 @@
-// Libraries
 import React, { useState, Fragment, useEffect, useRef } from 'react';
 import { useQuery } from "@apollo/react-hooks";
 import { Portal } from 'react-portal';
-// Components
 import StarRating from './starRating';
 import Gallery from '../Gallery'
-// Query
 import MAP_HIKE_ROUTE from '../../queries/mapEvent/HikeRoute';
 let line = null;
-// Component
+
 const EventView = ({ event, isMobile }) => {
 	const popImageUrl = process.env.NODE_ENV !== "development"
 	? `https://api.adanconstanzo.com${event.popUpImage.url}`

@@ -6,7 +6,7 @@ import Lost3 from '../../assets/images/lost-03.gif';
 import Lost4 from '../../assets/images/lost-04.gif';
 let lostGif = [Lost1, Lost2, Lost3, Lost4];
 let random = Math.floor(Math.random() * 4);
-// Component
+
 const NoMatch = () => (
   <div className="loadingScreen" >
 		<p>404</p>

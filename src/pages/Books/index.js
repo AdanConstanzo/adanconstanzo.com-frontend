@@ -1,10 +1,8 @@
-// Libraries
 import React, { useEffect } from 'react';
-//Components
 import Query from '../../components/Query';
-// Queries
 import BOOKS_QUERY from '../../queries/books/books';
-// Component
+import { FormatUrlSrc } from '../../utils/index';
+
 const Books = () => {
 	useEffect(() => {
     document.body.classList.add('bg-color-primary');
@@ -35,13 +33,10 @@ const Book = ({ book }) => {
 		"reading": "book--shadow__reading",
 		"read": "book--shadow__read"
 	}
-	const BookImageUrl = process.env.NODE_ENV !== "development"
-	? `https://api.adanconstanzo.com${book.coverImage.url}`
-	: process.env.REACT_APP_BACKEND_URL + book.coverImage.url;
 	return (
 		<div>
 			<a href={`book/${book.id}`}>
-				<img class={`book ${bookClass[book.status]}`} alt="book"  src={BookImageUrl}/>
+				<img class={`book ${bookClass[book.status]}`} alt="book"  src={FormatUrlSrc(book.coverImage.url)}/>
 			</a>
 	</div>
 	);

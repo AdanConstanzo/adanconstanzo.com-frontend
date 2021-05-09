@@ -1,4 +1,3 @@
-	// Libraries
 import React, { useState, useRef, useEffect } from 'react';
 
 let line = null;

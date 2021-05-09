@@ -61,20 +61,21 @@ const EventTableRow = ({ele, setOpen}) => (
 	</tr>
 )
 
-const DesktopEventDivision = ({ mapIcon, setView, view }) => (
-	<div className="DesktopEventDivision">
-		{Object.keys(mapIcon).map((key, i) => {
-				if (key !== "__typename") {
+const DesktopEventDivision = ({ mapIcon, setView, view }) => {
+	const filterMapIcons = Object.keys(mapIcon).filter(s => s!=="__typename")
+	return (
+		<div className="DesktopEventDivision">
+			{filterMapIcons.map((key, i) => {
 					const url = mapIcon[key].url;
 					return (
 						<div>
-							<img onClick={() => setView(key)} className={view === key ? "" : "opacity" } key={i} src={FormatUrlSrc(url)} />
+							<img alt={key} onClick={() => setView(key)} className={view === key ? "" : "opacity" } key={i} src={FormatUrlSrc(url)} />
 						</div>
 					);
-				}
-			})}
-	</div>
-);
+				})}
+		</div>
+	)
+};
 
 
 

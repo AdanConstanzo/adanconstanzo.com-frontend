@@ -1,15 +1,13 @@
-// Libraries
 import React, { useEffect } from "react";
-// Components
 import Query from "../../components/Query";
-// Scripts 
-import SetBlogs from '../../scripts/blogs';
-// Queries 
 import BLOGS_QUERY from "../../queries/blogs/blogs";
-// Component
+import { FormatUrlSrc, IsMobile } from '../../utils/index';
+
 const Blogs = () => {
 	useEffect(() => {
-		SetBlogs();
+		if (!IsMobile()) {
+			document.body.classList.add('non-mobile');
+		}
     document.body.classList.add('bg-color-primary');
 	})
   return (
@@ -32,20 +30,15 @@ const BlogsWrapper = ({ blogs }) => (
 	</React.Fragment>
 );
 
-const Blog = ({ blog }) => {
-	const CoverImageUrl = process.env.NODE_ENV !== "development"
-	? `https://api.adanconstanzo.com${blog.coverImage.url}`
-	: process.env.REACT_APP_BACKEND_URL + blog.coverImage.url;
-	return(
-		<figure className="effect-sadie">
-			<img src={CoverImageUrl} alt={blog.title} />
-			<figcaption>
-				<h2>{blog.title}<br/><span>{blog.subTitle}</span></h2>
-				<p>{blog.description}</p>
-				<a href={`/blog/${blog.id}`} target="_blank" rel="noopener noreferrer" >View more</a>
-			</figcaption>
-		</figure>
-	);
-}
+const Blog = ({ blog }) => (
+	<figure className="effect-sadie">
+		<img src={FormatUrlSrc(blog.coverImage.url)} alt={blog.title} />
+		<figcaption>
+			<h2>{blog.title}<br/><span>{blog.subTitle}</span></h2>
+			<p>{blog.description}</p>
+			<a href={`/blog/${blog.id}`} target="_blank" rel="noopener noreferrer" >View more</a>
+		</figcaption>
+	</figure>
+)
 
 export default Blogs;

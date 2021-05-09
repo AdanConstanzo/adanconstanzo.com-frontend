@@ -1,12 +1,10 @@
-// Libraries
 import React, { createRef } from 'react';
 import { IsMobile } from '../../utils/index';
-// Components
 import TypeToggle from './typeToggle';
 import CategoryToggle from './CategoryToggle';
 import EventView from './eventView';
 import FeatureToggle from './FeatureToggle';
-// Component
+
 class MapPopUp extends React.Component {
 	constructor(props) {
 		super(props);
