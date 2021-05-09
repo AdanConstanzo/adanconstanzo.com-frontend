@@ -1,0 +1,18 @@
+.overflow-hidden {
+	overflow: hidden !important;
+}
+
+#mapid { 
+	height: 100vh; 
+}
+
+.popup {
+	text-align: center;
+	max-width: 220px;
+	img {
+		margin: 10px 0;
+	}
+	p {
+		padding: 0;
+	}
+}

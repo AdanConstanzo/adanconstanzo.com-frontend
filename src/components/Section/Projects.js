@@ -1,9 +1,7 @@
-// Libraries
 import React from 'react';
-// Components
 import ProjectIcon from '../ProjectModal/ProjectIcon';
 import ProjectModal from '../ProjectModal';
-// Component
+
 const Projects = ({ projects }) => (
 	<React.Fragment>
 		<section id="projects" className="bg-color-primary-light">

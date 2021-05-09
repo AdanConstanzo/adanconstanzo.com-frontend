@@ -1,18 +1,13 @@
-// Libraries
 import React from 'react';
+import { FormatUrlSrc } from '../../utils/index';
 
-const FooterIcon = ( {footer} ) => {
-	const icon = process.env.NODE_ENV !== "development"
-		? `https://api.adanconstanzo.com${footer.icon.url}`
-		: process.env.REACT_APP_BACKEND_URL + footer.icon.url;
-	return(
-		<div>
-			<a href={footer.link}>
-				<img src={icon} alt="triangle with all three sides equal" height="50px" width="50px" />
-				<br/>{footer.text}
-			</a>
-		</div>
-	);
-}
+const FooterIcon = ({ footer }) => (
+	<div>
+		<a href={footer.link}>
+			<img src={FormatUrlSrc(footer.icon.url)} alt="triangle with all three sides equal" height="50px" width="50px" />
+			<br/>{footer.text}
+		</a>
+	</div>
+);
 
 export default FooterIcon;

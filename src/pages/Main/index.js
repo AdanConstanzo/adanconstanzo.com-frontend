@@ -1,22 +1,17 @@
-// Libraries
 import React, { useEffect } from "react";
-// Scripts
 import TerminalText from '../../scripts/TerminalText';
 import SetModal from '../../scripts/modal';
 import SetBlogs from '../../scripts/blogs';
 import SetNav from '../../scripts/nav';
-// Components
 import Header from '../../components/Header/';
 import AboutMe from '../../components/Section/AboutMe';
 import Projects from "../../components/Section/Projects";
 import Blogs from "../../components/Section/Blogs";
 import Query from "../../components/Query";
 import { HomeFooter } from '../../components/Footer';
-// Queries
 import HOME_QUERY from '../../queries/home';
-//Utilities
 import { smoothScroll, checkProjectScroll } from '../../scripts/utils';
-// Component
+
 const Home = () => (
   <React.Fragment>
     <Query query={HOME_QUERY}>
@@ -32,7 +27,7 @@ const Home = () => (
     </Query>
   </React.Fragment>
 );
-// Wrapper
+
 const HomeContainer = (props) => {
   // constant variables being used.
 	const texts = props.technologies.split(',');

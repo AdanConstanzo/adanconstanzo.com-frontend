@@ -1,16 +1,13 @@
-// Libraries
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
-// Components
 import Query from "../../components/Query";
 import ReactMarkdown from "react-markdown";
 import { BlogFooter } from '../../components/Footer/index';
-// Queries
 import BOOK_QUERY from "../../queries/book/book";
-// Component
+import { FormatUrlSrc } from '../../utils/index';
+
 const Book = () => {
   let { id } = useParams();
-  const transformImageUri = (input) => process.env.NODE_ENV !== "development" ? `https://api.adanconstanzo.com${input}` : process.env.REACT_APP_BACKEND_URL + input
   useEffect(() => {
     // Setting extra space to background.
     document.body.classList.add('bg-color-primary');
@@ -18,19 +15,13 @@ const Book = () => {
   return (
     <Query query={BOOK_QUERY} id={id}>
       {({ data: { book, footers } }) => {
-        const HeaderUrl = process.env.NODE_ENV !== "development"
-        ? `https://api.adanconstanzo.com${book.header.url}`
-        : process.env.REACT_APP_BACKEND_URL + book.header.url;
-        const bookCover = process.env.NODE_ENV !== "development"
-        ? `https://api.adanconstanzo.com${book.coverImage.url}`
-        : process.env.REACT_APP_BACKEND_URL + book.coverImage.url;
         const style = {
-          background: `url(${HeaderUrl}) no-repeat center`,
+          background: `url(${FormatUrlSrc(book.header.url)}) no-repeat center`,
           backgroundSize: 'cover'
         }
         return (
           <React.Fragment>
-            <BookWrapper bookCover={bookCover} book={book} style={style} transformImageUri={transformImageUri} />
+            <BookWrapper bookCover={FormatUrlSrc(book.header.url)} book={book} style={style} transformImageUri={FormatUrlSrc} />
             <BlogFooter footers={footers} />
           </React.Fragment>
         );
@@ -38,7 +29,7 @@ const Book = () => {
     </Query>
   );
 };
-// Wrapper
+
 const BookWrapper = ({ book, style, transformImageUri, bookCover }) => (
   <div>
     <div className="header" > 

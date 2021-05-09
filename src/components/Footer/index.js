@@ -1,8 +1,6 @@
-// Libraries
 import React from 'react';
-// Components
 import FooterIcon from './FooterIcon';
-// Component
+
 const HomeFooter = ( { footers } ) => (
 	<footer id="contact" className="bg-color-primary-light">
 		<h2 className="footer__h2 color-primary" data-animation='{ "animation": "animation-fadeIn", "delayInit": false }'>Contact Me!</h2>

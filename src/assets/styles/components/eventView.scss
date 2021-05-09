@@ -1,0 +1,253 @@
+.eventContent {
+	opacity: 0;
+	transition: opacity 100ms ease-in 400ms;
+}
+.setOpacityTo1 {
+	opacity: 1 !important;
+}
+
+.eventView {
+	font-weight: 400;
+	font-family: sans-serif;
+	text-align: center;
+	img {
+		width: 100%;
+	}
+	.general-info, .user-info {
+		padding: 1rem;
+	}
+	.general-info {
+		border-bottom: 1px solid #d2d2d2;
+		.name {
+			font: bold 2.5rem "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+			color: #333;
+			line-height: 90%;
+			margin: .2em 0 .4em 0;
+			letter-spacing: -2px;
+			// font-size: 2.5rem;
+			// padding-bottom: 0.5rem;
+		}
+		.location {
+			// font-size: 1.5rem;
+			font-size: 1.8rem;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			color: #000;
+			font-size: 10px;
+			font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+			font-weight: 100; 
+		}
+		div > i {
+			padding: 0.5rem 0;
+			font-size: 1.5rem;
+		}
+	}
+	.user-info {
+		.description {
+			// font-size: 1.7rem;
+			// text-align: left;
+			color: #424242;
+			font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+			letter-spacing:0.1em;
+			text-align:center;
+			margin: 0.5rem auto;
+			line-height: 145%;
+			font-size: 1.7rem;
+			font-variant: small-caps;
+			min-height: 9.6rem;
+		}
+		a {
+			font-size: 1.5rem;
+			float: right;
+			text-decoration: none;
+			color: #000;
+			i {
+				padding-left: 1rem;
+			}
+		}
+		a:visited {
+			color: #000;
+		}
+	}
+	@media screen and (min-width: $bpTablet) {
+		.general-info, .user-info {
+			padding: 2rem;
+		}
+		.general-info {
+			border-bottom: 1px solid #d2d2d2;
+			.name {
+				// font-size: 3.5rem;
+				// padding-bottom: 1rem;
+				font: bold 34px "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+				color: #333;
+				line-height: 90%;
+				margin: .2em 0 .4em 0;
+				letter-spacing: -2px;
+			}
+			.location {
+				// font-size: 1.8rem;
+				font-size: 1.8rem;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				color: #000;
+				font-size: 10px;
+				font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+				font-weight: 100; 
+			}
+			
+		}
+		.user-info {
+			p:first-letter{
+				text-transform: uppercase;
+			}
+			.description {
+				// font-size: 1.7rem;
+				// text-align: left;
+				max-width: 45rem;
+				color: #424242;
+        font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+				letter-spacing:0.1em;
+				text-align:center;
+				margin: 40px auto;
+				line-height: 145%;
+				font-size: 14pt;
+				font-variant: small-caps;
+				height: auto;
+			}
+		}
+	}
+}
+
+.fa-star:before {
+  content: "\f005";
+}
+.fa-star-o:before {
+  content: "\f006";
+}
+.fa-external-link:before {
+  content: "\f08e";
+}
+
+.galleryIcon {
+	font-size: 1.5rem;
+	float: left;
+	cursor: pointer;
+}
+
+.galleryIcon i {
+	margin-left: 1rem;
+}
+
+.ImageModal {
+	position: absolute;
+	top: 0;
+	z-index: 1000;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0,0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: opacity ease-in 0.2s;
+	.Content {
+		width: 95vw;
+		height: 80vh;
+		background-color: #eaeaea;
+		border-radius: 25px;
+		padding: 5rem;
+		position: relative;
+		display: flex;
+		@media screen and (min-width: $bpTablet) {
+			width: 60vw;
+		}
+		> div {
+			width: 100%;
+		}
+		.Gallery {
+			display: flex;
+			height: 100%;
+			flex-direction: column;
+			i {
+				font-size: 2rem;
+				cursor: pointer;
+				position: absolute;
+				right: 3rem;
+				top: 2rem;
+			}
+			p {
+				text-align: center;
+				font-size: 2rem;
+				padding-bottom: 1rem;
+			}
+			> div {
+				overflow-y: scroll;
+				height: 100%;
+				&::-webkit-scrollbar { 
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+
+
+.CategoryPanel {
+	@include Modal();
+	background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.2));
+	@include ModalContent();
+	.Close {
+		font-size: 2rem;
+		cursor: pointer;
+		position: absolute;
+		top: 2rem;
+		left: 2rem;
+	} 
+	.CategoryPanelModal {
+		padding: 5rem 0.5rem 5rem 0.5rem;
+		@media screen and (min-width: 768px) {
+			padding: 5rem;
+		}
+	}
+}
+
+
+
+.EventCategoryWindow {
+	height: 100%;
+	width: 100%;
+	.DesktopTable {
+		height: 80%;
+		overflow-x: none;
+		overflow-y: scroll;
+		font-size: 1.5rem;
+		table {
+			width: 100%;
+			height: 100%;
+			text-align: center;
+			th{
+				position: sticky;
+				top: 0;
+				background: #eaeaea;
+				font-size: 2rem;
+			}
+			.Clickable {
+				cursor: pointer;
+				color: blue;
+			}
+		}
+	}
+	.DesktopEventDivision {
+		width: 100%;
+		height: 20%;
+		display: flex;
+    justify-content: space-around;
+    align-items: center;
+		div {
+			cursor: pointer;
+		}
+		.opacity {
+			opacity: 0.4;
+		}
+	}
+}
