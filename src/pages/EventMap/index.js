@@ -4,6 +4,7 @@ import LoadingScreen from '../../components/LoadingScreen';
 import Query from '../../components/Query';
 import MapPopUp from '../../components/MapPopUP';
 import MAP_EVENT_QUERY from "../../queries/mapEvent";
+import { IsMobile } from '../../utils/index';
 
 class HikingMap extends React.Component {
 
@@ -12,11 +13,13 @@ class HikingMap extends React.Component {
   };
 
   componentDidMount() {
-    document.body.classList.add("overflow-hidden");
+    if (!IsMobile()) {
+      document.body.classList.add("overflow-hidden");
+    }
   }
 
   setIt = () => this.setState({ loaded: true });
-  
+
   render(){
     const { loaded } = this.state;
     if (loaded === true) {
