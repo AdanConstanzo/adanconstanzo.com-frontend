@@ -68,6 +68,9 @@
 		a:visited {
 			color: #000;
 		}
+		.user-info-buttons {
+			min-height: 1.7rem;
+		}
 	}
 	@media screen and (min-width: $bpTablet) {
 		.general-info, .user-info {

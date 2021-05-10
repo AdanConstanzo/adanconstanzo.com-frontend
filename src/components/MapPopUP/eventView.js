@@ -22,7 +22,7 @@ const EventView = ({ event, isMobile }) => {
 				</div>
 				<div className="user-info">
 					<p className="description center">{event.description}</p>
-					<div>
+					<div className="user-info-buttons">
 						<span onClick={()=>setVisible(true)} className="galleryIcon">Images<i className="fa fa-picture-o" aria-hidden="true"></i></span>
 						{event.showBlog && 
 							<a href={`/event/${event.id}`} target="_blank" rel="noopener noreferrer" >
