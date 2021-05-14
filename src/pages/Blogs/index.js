@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Query from "../../components/Query";
 import BLOGS_QUERY from "../../queries/blogs/blogs";
+import { BlogFooter } from '../../components/Footer';
 import { FormatUrlSrc, IsMobile } from '../../utils/index';
 
 const Blogs = () => {
@@ -11,7 +12,7 @@ const Blogs = () => {
     document.body.classList.add('bg-color-primary');
 	})
   return (
-		<div className="archive" >
+		<div className="archive no-padding" >
 			<div className="header" >
 				<h1>Here are MORE of my blogs :)</h1>
 			</div>
@@ -20,6 +21,7 @@ const Blogs = () => {
 					{({ data: { blogs } }) => <BlogsWrapper key={blogs.id} blogs={blogs} />}
 				</Query>
 			</div>
+			<BlogFooter />
 		</div>
   );
 };

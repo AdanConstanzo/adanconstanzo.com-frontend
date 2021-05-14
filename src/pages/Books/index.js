@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { BlogFooter } from '../../components/Footer/index';
 import Query from '../../components/Query';
 import BOOKS_QUERY from '../../queries/books/books';
 import { FormatUrlSrc } from '../../utils/index';
@@ -8,7 +9,7 @@ const Books = () => {
     document.body.classList.add('bg-color-primary');
 	})
 	return (
-		<div class="archive" >
+		<div class="archive no-padding" >
 			<div class="header" >
 				<h1>Here is my book collection!</h1>
 			</div>
@@ -17,6 +18,7 @@ const Books = () => {
 						{({ data: { books } }) => <BookWrapper books={books} />}
 				</Query>
 			</div>
+			<BlogFooter/>
 		</div>
 	);
 }

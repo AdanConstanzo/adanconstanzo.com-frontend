@@ -15,13 +15,6 @@ const EVENT_QUERY = gql`
 			description
 			starRating
 		}
-		footers {
-			link
-			text
-			icon{
-				url
-			}
-		}
 	}
 `;
 

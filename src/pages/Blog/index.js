@@ -14,7 +14,7 @@ const Blog = () => {
   });
   return (
     <Query query={BLOG_QUERY} id={id}>
-      {({ data: { blog, footers } }) => {
+      {({ data: { blog } }) => {
         const style = {
           background: `url(${FormatUrlSrc(blog.header.url)}) no-repeat center`,
           backgroundSize: 'cover'
@@ -22,7 +22,7 @@ const Blog = () => {
         return (
           <React.Fragment>
             <BlogWrapper blog={blog} style={style} transformImageUri={FormatUrlSrc} />
-            <BlogFooter footers={footers} />
+            <BlogFooter />
           </React.Fragment>
         );
       }}

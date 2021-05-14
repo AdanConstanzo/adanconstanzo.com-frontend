@@ -1,4 +1,4 @@
-const init = () => {
+const init = (querySelector) => {
 
 	const openModal = (modal) => () => {
 		modal.classList.add('modal--open');
@@ -13,7 +13,7 @@ const init = () => {
 		document.body.classList.remove('no-scroll');
 	}
 	
-	const projects = document.querySelectorAll('.projects-hidden-div');
+	const projects = document.querySelectorAll(querySelector);
 	projects.forEach(project => {
 		const projectId = project.getAttribute('data-modal');
 		const modal = document.getElementById(projectId);

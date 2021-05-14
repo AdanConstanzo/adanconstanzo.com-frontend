@@ -26,6 +26,13 @@
     font-size: 3.5rem;
     padding-bottom: 10rem;
   }
+  a {
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  a:hover {
+    color: $primarySecond;
+  }
 }
 
 section,
@@ -39,6 +46,13 @@ footer {
   }
 }
 
+.no-margin {
+  margin: 0 !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
 
 .no-scroll {
   overflow: hidden !important;

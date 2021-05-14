@@ -14,13 +14,6 @@ const BLOG_QUERY = gql`
 				url
 			}
 		}
-		footers {
-			link
-			text
-			icon{
-				url
-			}
-		}
 	}
 `;
 

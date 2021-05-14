@@ -14,13 +14,6 @@ const BOOKS_QUERY = gql`
 				url
 			}
 		}
-		footers {
-			link
-			text
-			icon{
-				url
-			}
-		}
 	}
 `;
 

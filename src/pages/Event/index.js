@@ -15,7 +15,7 @@ const Event = () => {
   });
   return (
     <Query query={EVENT_QUERY} id={id}>
-      {({ data: { mapEvent, footers } }) => {
+      {({ data: { mapEvent } }) => {
         if (mapEvent == null || mapEvent.header == null) {
           return (<NoMatch/>)
         } 
@@ -26,7 +26,7 @@ const Event = () => {
         return (
           <React.Fragment>
             <EventWrapper mapEvent={mapEvent} style={style} transformImageUri={FormatUrlSrc} />
-            <BlogFooter footers={footers} />
+            <BlogFooter/>
           </React.Fragment>
         );
       }}

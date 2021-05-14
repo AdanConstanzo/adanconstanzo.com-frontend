@@ -9,6 +9,7 @@ import Book from './pages/Book';
 import Books from './pages/Books';
 import EventMap from './pages/EventMap';
 import Event from './pages/Event';
+import Projects from './pages/Projects';
 import NoMatch from './pages/NoMatch';
 // Component
 function Routes() {
@@ -22,6 +23,7 @@ function Routes() {
         <Route path="/books" component={Books} exact />
         <Route path="/eventMap" component={EventMap} exact />
         <Route path="/event/:id" component={Event} exact />
+        <Route path="/projects" component={Projects} exact />
         <Route path="*" component={NoMatch} />
       </Switch>
     </div>

@@ -14,7 +14,7 @@ const Book = () => {
   });
   return (
     <Query query={BOOK_QUERY} id={id}>
-      {({ data: { book, footers } }) => {
+      {({ data: { book } }) => {
         const style = {
           background: `url(${FormatUrlSrc(book.header.url)}) no-repeat center`,
           backgroundSize: 'cover'
@@ -22,7 +22,7 @@ const Book = () => {
         return (
           <React.Fragment>
             <BookWrapper bookCover={FormatUrlSrc(book.header.url)} book={book} style={style} transformImageUri={FormatUrlSrc} />
-            <BlogFooter footers={footers} />
+            <BlogFooter/>
           </React.Fragment>
         );
       }}

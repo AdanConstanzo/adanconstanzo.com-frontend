@@ -54,7 +54,7 @@ const HomeContainer = (props) => {
 		window.addEventListener('scroll', projectScrollEvent.func);
     window.addEventListener('scroll', blogsScrollEvent.func);
     // Calling our initializers. 
-    SetModal();
+    SetModal('.projects-hidden-div');
     SetBlogs();
     SetNav();
     // Checking to see if page is currently on certain section. 

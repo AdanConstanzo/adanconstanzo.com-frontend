@@ -1,5 +1,7 @@
 import React from 'react';
 import FooterIcon from './FooterIcon';
+import FOOTER_QUERY from "../../queries/footer"
+import Query from "../Query";
 
 const HomeFooter = ( { footers } ) => (
 	<footer id="contact" className="bg-color-primary-light">
@@ -10,7 +12,7 @@ const HomeFooter = ( { footers } ) => (
 	</footer>
 );
 
-const BlogFooter = ({ footers }) => (
+const BlogFooterComponent = ({ footers }) => (
 	<footer id="contact" className="bg-color-primary-light">
 		<h2 className="footer__h2 color-primary" >Check me out on the socials!</h2>
 		<div className="footer__icon__wrapper">
@@ -18,6 +20,18 @@ const BlogFooter = ({ footers }) => (
 		</div>
 	</footer>
 );
+
+const BlogFooter = (className="bg-color-primary") => (
+	<Query query={FOOTER_QUERY}>
+		{({ data: { footers } }) =>
+		<div className={className}>
+			<BlogFooterComponent footers={footers} />
+		</div>}
+	</Query>
+)
+
+
+
 
 export {
 	HomeFooter,
