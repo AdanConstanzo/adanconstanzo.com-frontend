@@ -1,5 +1,5 @@
 import React, { createRef } from 'react';
-import { IsMobile } from '../../utils/index';
+import { IsMobile, FormatUrlSrc } from '../../utils/index';
 import TypeToggle from './typeToggle';
 import CategoryToggle from './CategoryToggle';
 import EventView from './eventView';
@@ -85,7 +85,6 @@ class MapPopUp extends React.Component {
       tempEvent.marker = marker;
 			mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
-		window.try = mapEventMap;
 		this.setState({ mapEventMap, icons, HasFeatures: JSON.parse(localStorage.getItem("HasFeatures")), isMobile });
 	}
 
@@ -101,13 +100,9 @@ class MapPopUp extends React.Component {
 		iconsKeys.forEach(key => {
 			// collecting information about icon
 			const { width, height, url } = mapIcons[key];
-			// Getting our url.
-			const iconUrl = process.env.NODE_ENV !== "development"
-				? `https://api.adanconstanzo.com${url}`
-				: process.env.REACT_APP_BACKEND_URL + url;
 			// Generating our Icons with Leafletjs
 			const icon = L.icon({
-				iconUrl,
+				iconUrl: FormatUrlSrc(url),
 				iconSize: [width, height],
 				// this anchor works for all images so far. 
 				popupAnchor: [5, -25]

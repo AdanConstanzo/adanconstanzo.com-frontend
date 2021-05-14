@@ -4,17 +4,15 @@ import { Portal } from 'react-portal';
 import StarRating from './starRating';
 import Gallery from '../Gallery'
 import MAP_HIKE_ROUTE from '../../queries/mapEvent/HikeRoute';
+import { FormatUrlSrc } from '../../utils/index';
 let line = null;
 
 const EventView = ({ event, isMobile }) => {
-	const popImageUrl = process.env.NODE_ENV !== "development"
-	? `https://api.adanconstanzo.com${event.popUpImage.url}`
-	: process.env.REACT_APP_BACKEND_URL + event.popUpImage.url;
 	const [visible, setVisible] = useState(false);
 	return (
 		<Fragment>
 			<div className="eventView">
-				<img src={popImageUrl} alt={event.name} ></img>
+				<img src={FormatUrlSrc(event.popUpImage.url)} alt={event.name} ></img>
 				<div className="general-info">
 					<p className="name">{event.name}</p>
 					<p className="location">{event.city}, {event.state}</p>

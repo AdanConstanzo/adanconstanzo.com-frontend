@@ -48,8 +48,7 @@ const HandleClick = (ele, setOpen) => () => {
 	setOpen(false);
 	setTimeout(() => {
 		ele.marker._events.click[0].fn(null, latitude, longitude);	
-	}, 100);
-	
+	}, 100);	
 }
 
 const EventTableRow = ({ele, setOpen}) => (
@@ -59,10 +58,10 @@ const EventTableRow = ({ele, setOpen}) => (
 		<td>{ele.state}</td>
 		<td>{ele.starRating}/5</td>
 	</tr>
-)
+);
 
 const DesktopEventDivision = ({ mapIcon, setView, view }) => {
-	const filterMapIcons = Object.keys(mapIcon).filter(s => s!=="__typename")
+	const filterMapIcons = Object.keys(mapIcon).filter(s => s!=="__typename");
 	return (
 		<div className="DesktopEventDivision">
 			{filterMapIcons.map((key, i) => {
@@ -74,7 +73,7 @@ const DesktopEventDivision = ({ mapIcon, setView, view }) => {
 					);
 				})}
 		</div>
-	)
+	);
 };
 
 

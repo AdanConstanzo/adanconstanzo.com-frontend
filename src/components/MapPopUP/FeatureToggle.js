@@ -43,7 +43,6 @@ const FeatureToggle = ({ filterRef, featureRef, openFeature, MyMapClickFunction 
 	const CloseFeatures = () => {
 		if (startRecord) {
 			Undo();
-			console.log('undo');
 		} else {
 			setOpen(false);
 			RemoveLine();
