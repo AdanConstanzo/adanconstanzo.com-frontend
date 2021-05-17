@@ -14,6 +14,9 @@ const AboutMe = ({ homeAboutMe }) => (
 				data-animation='{ "animation": "animation-fadeIn", "delayInit": false, "delayBetween": 500 }'>{homeAboutMe.header}</h2>
 			<p className="about-me__p about-me-hidden-div"
 				data-animation='{ "animation": "animation-fadeIn", "delayInit": false, "delayBetween": 500 }'>{homeAboutMe.description}</p>
+			<div className="about-me-hidden-div" data-animation='{ "animation": "animation-fadeIn", "delayInit": false, "delayBetween": 500 }' >
+				<h2 className="about-me__p projects__h2 color-primary-lightest about-me_resume"><a target="_blank" rel="noopener noreferrer" href={FormatUrlSrc(homeAboutMe.Resume.url)} download>{homeAboutMe.resumeText}</a></h2>
+			</div>
 			<h3 className="about-me__h3 about-me-hidden-div"
 				data-animation='{ "animation": "animation-fadeIn", "delayInit": false, "delayBetween": 500 }'>{homeAboutMe.subHeader}</h3>
 			<div id="test" className="terminal-text about-me-hidden-div"

@@ -26,13 +26,17 @@ const PROJECTS_QUERY = gql`
 			}
 		}
 		homeAboutMe {
-			technologies,
+			technologies
 			header
 			description
 			subHeader
 			imageOfMe {
 				url
 			}
+			Resume {
+				url
+			}
+			resumeText
 		}
 		projects {
 			title
@@ -50,6 +54,13 @@ const PROJECTS_QUERY = gql`
 			modalTech
 			modalId
 		}
+		projectContent {
+			projectTitle
+			projectPageLinkText
+		}
+		blogContent {
+      blogTitle
+    }
 	}
 `;
 

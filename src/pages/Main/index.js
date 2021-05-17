@@ -15,12 +15,12 @@ import { smoothScroll, checkProjectScroll } from '../../scripts/utils';
 const Home = () => (
   <React.Fragment>
     <Query query={HOME_QUERY}>
-    {({ data: { homeHeader, homeAboutMe, projects, blogs, footers } }) => 
+    {({ data: { homeHeader, homeAboutMe, projects, blogs, footers, projectContent, blogContent } }) => 
       <HomeContainer technologies={homeAboutMe.technologies} >
         <Header homeHeader={homeHeader} />
         <AboutMe homeAboutMe={homeAboutMe} /> 
-        <Projects projects={projects} />
-        <Blogs blogs={blogs} /> 
+        <Projects projectContent={projectContent} projects={projects} />
+        <Blogs blogContent={blogContent} blogs={blogs} /> 
         <HomeFooter footers={footers} />
       </HomeContainer>
     }

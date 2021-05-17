@@ -2,7 +2,7 @@ import React from 'react';
 import ProjectIcon from '../ProjectModalHidden/ProjectIcon';
 import ProjectModal from '../ProjectModalHidden';
 
-const Projects = ({ projects }) => {
+const Projects = ({ projects, projectContent }) => {
 
 	// Selecting four projects from out projects array.
 	let tempProjects = [...projects];
@@ -28,11 +28,15 @@ const Projects = ({ projects }) => {
 			<section id="projects" className="bg-color-primary-light">
 				<h2 className="projects__h2 color-primary projects-hidden"
 					data-animation='{ "animation": "animation-fadeIn", "delayInit": false, "delayTime": 250 }'>
-					<a className="color-primary" target="_blank" rel="noopener noreferrer" href="/projects">Check Out Some Of My Projects</a>
+					<a className="color-primary" target="_blank" rel="noopener noreferrer" href="/projects">{projectContent.projectTitle}</a>
 				</h2>
 				<div className="projects__wrapper projects-hidden">
 					{fourProjects.map(project => <ProjectIcon key={project.modalId} project={project} />)}
 				</div>
+				<h2 className="projects__h2 color-primary projects-hidden no-padding"
+					data-animation='{ "animation": "animation-fadeIn", "delayInit": false, "delayTime": 250 }'>
+					<a className="color-primary" target="_blank" rel="noopener noreferrer" href="/projects">{projectContent.projectPageLinkText}</a>
+				</h2>
 			</section>
 			{fourProjects.map(project => <ProjectModal key={project.modalId} project={project} />)}
 		</React.Fragment>
