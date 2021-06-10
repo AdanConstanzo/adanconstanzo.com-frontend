@@ -15,7 +15,7 @@ class MapPopUp extends React.Component {
 			open: false,
 			openFilter: false,
 			openFeature: false,
-			icons : {},
+			icons: {},
 			HasFeatures: false,
 			isMobile: false,
 		};
@@ -29,12 +29,12 @@ class MapPopUp extends React.Component {
 		this.setState({ latlng: {} });
 		this.myRef.current.classList.remove('animateHeight');
 		this.currentContent.current.classList.remove('setOpacityTo1');
-		this.setState({ open: false, currentEvent: {}, latlng: {}  });	
+		this.setState({ open: false, currentEvent: {}, latlng: {} });
 	}
 	componentDidMount() {
 		const { mapEvents, mapIcon } = this.props;
 		const L = window.L;
-    const mymap = window.mymap;
+		const mymap = window.mymap;
 		const icons = this.generateIcons(mapIcon);
 		const isMobile = IsMobile();
 		const mapEventMap = {
@@ -48,11 +48,11 @@ class MapPopUp extends React.Component {
 		mymap.on('click', (e) => {
 			this.MyMapClickFunction()
 		})
-    mapEvents.forEach(event => {
-      const { latitude, longitude, type } = event;
-      // Setting default icons to pointOfInterest else custom icon. 
-      const icon = (type === "pointOfInterest") ? null : { icon: icons[type] }
-      const marker = L.marker([latitude, longitude], icon).addTo(mymap).on('click', (e, Lat, Lng) => {
+		mapEvents.forEach(event => {
+			const { latitude, longitude, type } = event;
+			// Setting default icons to pointOfInterest else custom icon. 
+			const icon = (type === "pointOfInterest") ? null : { icon: icons[type] }
+			const marker = L.marker([latitude, longitude], icon).addTo(mymap).on('click', (e, Lat, Lng) => {
 				const { mapEventMap } = this.state;
 				let lat = null;
 				let lng = null;
@@ -60,13 +60,13 @@ class MapPopUp extends React.Component {
 				if (e === null) {
 					lat = Lat;
 					lng = Lng;
-					latlng = {lat, lng};
+					latlng = { lat, lng };
 				} else {
-					lat =  e.latlng.lat;	
+					lat = e.latlng.lat;
 					lng = e.latlng.lng;
 					latlng = e.latlng;
 				}
-				
+
 				this.myRef.current.classList.add('animateHeight');
 				this.currentContent.current.classList.add('setOpacityTo1');
 				this.setState({ open: true, currentEvent: mapEventMap[type][`${lat}-${lng}`], latlng });
@@ -77,12 +77,12 @@ class MapPopUp extends React.Component {
 					if (type === 'food') {
 						mymap.flyTo([latitude, longitude + F], 18);
 					} else {
-						mymap.flyTo([latitude, longitude + H], 14);	
+						mymap.flyTo([latitude, longitude + H], 14);
 					}
 				}
 			});
-      const tempEvent = {...event};
-      tempEvent.marker = marker;
+			const tempEvent = { ...event };
+			tempEvent.marker = marker;
 			mapEventMap[type][`${event.latitude}-${event.longitude}`] = tempEvent;
 		});
 		this.setState({ mapEventMap, icons, HasFeatures: JSON.parse(localStorage.getItem("HasFeatures")), isMobile });
@@ -125,7 +125,7 @@ class MapPopUp extends React.Component {
 		Object.keys(mapEventMap[type]).forEach(ele => {
 			const { latitude, longitude } = mapEventMap[type][ele];
 			mapEventMap[type][ele].marker.setLatLng({
-				lat: latitude, lng: longitude 
+				lat: latitude, lng: longitude
 			});
 			mapEventMap[type][ele].marker.addTo(mymap);
 		});
@@ -200,7 +200,7 @@ class MapPopUp extends React.Component {
 					<i className="fa my-caret" aria-hidden="true"></i>
 				</div>
 				<div className="Settings">
-					<TypeToggle 
+					<TypeToggle
 						icons={icons}
 						openFilter={this.openFilter}
 						hideType={this.hideType}
@@ -209,7 +209,7 @@ class MapPopUp extends React.Component {
 						featureRef={this.featureRef}
 						categoryRef={this.categoryRef}
 					/>
-					{Object.keys(mapEventMap).length > 0 && 
+					{Object.keys(mapEventMap).length > 0 &&
 						<CategoryToggle
 							categoryRef={this.categoryRef}
 							mapEventMap={mapEventMap}
@@ -218,7 +218,7 @@ class MapPopUp extends React.Component {
 					}
 					{(HasFeatures && !isMobile) &&
 						<FeatureToggle
-							filterRef={this.filterRef} 
+							filterRef={this.filterRef}
 							featureRef={this.featureRef}
 							openFeature={this.openFeature}
 							MyMapClickFunction={this.MyMapClickFunction}
@@ -226,7 +226,7 @@ class MapPopUp extends React.Component {
 					}
 				</div>
 				<div ref={this.currentContent} className="eventContent">
-					{Object.keys(currentEvent).length > 0 && <EventView event={currentEvent} isMobile={isMobile} />}	
+					{Object.keys(currentEvent).length > 0 && <EventView event={currentEvent} isMobile={isMobile} />}
 				</div>
 			</div>
 		)
